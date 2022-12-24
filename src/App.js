@@ -1,48 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import React from 'react';
+// import './App.css';
+import React, {useState} from 'react';
 
-function App() {
+
+const App = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+  // const [selectedElements, setSelectedElements] = useState([null]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Clock/>
-      </header>
+      <h1>Floatful App</h1>
+      {selectedFile? (
+        <>
+          <p>File Selected</p>
+        </>
+      ) : (
+        <>
+          <p>File Not Found</p>
+        </>
+      )}
     </div>
   );
-}
-
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => {this.tick()}, 1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>Time</h2>
-        <p>It's currently {this.state.date.toLocaleTimeString()}</p>
-      </div>
-    )
-  }
 }
 
 export default App;
