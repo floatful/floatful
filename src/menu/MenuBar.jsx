@@ -16,7 +16,7 @@ const MenuItem = (props) => {
                     onClick = {handleItemClick}
                 )}*/
             >{props.value}</span>
-            <div class = ""
+            <div className = ""></div>
         </li>
     );
 }
