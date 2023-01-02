@@ -6,12 +6,17 @@ const SelectorsContainer = (props) => {
 
     const [addSelector, setAddSelector] = useState(false);
 
+    const selectElement = (element) => {
+        props.setSelectedItems(element);
+    }
+
     return (
-        <div className = "selections">
+        <div className = "floatful container--elements">
+            <h2>Elements</h2>
             <button onClick={()=>setAddSelector(true)}>+</button>
             {addSelector && <AddSelectorModal onExit={()=>setAddSelector(false)}/>}
             <p>Selectors</p>
-            <SelectionItem/>
+            <SelectionItem element="div" onClick={()=>selectElement("div")}/>
         </div>
     );
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const selectionItem = () => {
+const selectionItem = (props) => {
   return (
-    <div>selectionItem</div>
+    <div className="floatful-selector">{props.element}</div>
   )
 }
 

@@ -1,8 +1,11 @@
 import React from 'react';
 
-const PropertiesContainer = () => {
+const PropertiesContainer = (props) => {
     return (
-        <p>Properties</p>
+        <div className="floatful container--properties">
+            <h2>Properties</h2>
+            {props.selectedItem && <p>{props.selectedItem}</p>}
+        </div>
     );
 }
 

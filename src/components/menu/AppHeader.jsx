@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 //import '../images/logo.png';
 
 const AppHeader = (props) => {
+    const [documentName, setDocumentName] = useState("Untitled Document");
     return (
-        <header className="app-header">
-            <p className="app-logo">
+        <header className="floatful app-header">
+            {props.docName && setDocumentName(props.docName)}
+            <p className="floatful app-logo">
                 <img src = "logo.png" alt="Floatful"></img>
             </p>
-            <h1 className="app-doc-name">{props.docName}</h1>
+            <h1 className="floatful document-name">{documentName}</h1>
         </header>
     );
 }

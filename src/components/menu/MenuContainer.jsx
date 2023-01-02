@@ -5,7 +5,7 @@ import AppHeader from './AppHeader';
 const MenuContainer = (props) => {
     const [selectType, setSelectType] = useState(null);
     return (
-        <div className = "MenuContainer">
+        <div className = "floatful container--menu">
             <AppHeader docName={props.docName}/>
             <MenuBar/>
         </div>

@@ -2,7 +2,9 @@ import React from 'react';
 
 const MainContainer = (props) => {
     return (
-        <p>Main</p>
+        <div className="floatful container--main">
+            <p>Visual</p>
+        </div>
     );
 }
 
