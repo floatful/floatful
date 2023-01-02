@@ -7,7 +7,7 @@ const AppHeader = (props) => {
             <p className="app-logo">
                 <img src = "logo.png" alt="Floatful"></img>
             </p>
-            <h1 class="app-doc-name">{props.docName}</h1>
+            <h1 className="app-doc-name">{props.docName}</h1>
         </header>
     );
 }

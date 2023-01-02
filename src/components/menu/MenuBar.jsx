@@ -8,16 +8,7 @@ const MenuItem = (props) => {
         
     }
     return (
-        <li>
-            <span 
-                /*{props.isSubMenu? (
-                    onMouseOver={handleItemHover}
-                ): (
-                    onClick = {handleItemClick}
-                )}*/
-            >{props.value}</span>
-            <div className = ""></div>
-        </li>
+        <p>Menu Item</p>
     );
 }
 
@@ -27,7 +18,7 @@ const MenuBar = (props) => {
     }, []);
     return (
         <ul className = "app-menu">
-            <li className = ""></li>
+            <li className = ""><MenuItem/></li>
         </ul>
     )
 }
