@@ -1,34 +1,21 @@
 import './css/App.css';
 import React, {useState} from 'react';
-import MenuContainer from './components/menu/MenuContainer';
-import MainContainer from './components/main/MainContainer';
-import PropertiesContainer from './components/properties/PropertiesContainer';
-import SelectorsContainer from './components/selectors/SelectorsContainer';
+import Selector from './components/selectors/Selector';
+import SelectorForm from './components/selectors/SelectorForm';
+
 
 const App = () => {
-  const [selectors, setItems] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
-  // const [selectedElements, setSelectedElements] = useState([]);
-  // const [selectedElements, setSelectedElements] = useState([null]);
-
   return (
+    <>
+      <h1>Floatful</h1>
+      <h2>Selectors</h2>
+      <SelectorForm/>
 
-    <div className="App">
-      <MenuContainer/>
-      <SelectorsContainer
-        items = {selectors}
-        selectedItem = {selectedItem}
-        onItemSelect = {setSelectedItem}
-      />
-      <PropertiesContainer
-        items = {selectors}
-        selectedItem = {selectedItem}
-      />
-      <MainContainer
-        items = {selectors}
-        selectedItem = {selectedItem}
-      />
-    </div>
+      <ul id = "listSelectors">
+        <Selector path = {"div"}/>
+      </ul>
+
+    </>
   );
 }
 

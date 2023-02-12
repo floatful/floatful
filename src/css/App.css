@@ -1,6 +1,15 @@
 .floatful {
   box-sizing: border-box
 }
+.selector {
+  list-style-type:lower-greek
+}
+.selector-title {
+  padding-right: 10px;
+}
+/*
+OLD STYLING FROM ORIGINAL TESTS, NOT TO REMOVE IN CASE I WANT TO REUSE IT
+
 .floatful.container--elements, .floatful.container--main, .floatful.container--menu, .floatful.container--properties {
   position: fixed;
   margin: 0;
@@ -55,3 +64,4 @@
   height: calc(100vh - 50px);
   padding: 20px;
 }
+*/
