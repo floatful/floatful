@@ -2,6 +2,7 @@ import './css/App.css';
 import React, {useState} from 'react';
 import Selector from './components/selectors/Selector';
 import SelectorForm from './components/selectors/SelectorForm';
+import Element from './components/visualizer/Element';
 
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
         <Selector path = {"div"}/>
       </ul>
 
+      <Element></Element>
     </>
   );
 }
