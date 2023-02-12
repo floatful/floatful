@@ -1,19 +1,24 @@
-import React from 'react'
-
-function handleSubmit(e) {
-    e.preventDefault();
-    alert('Trying to add selector');
-}
+import React, {useState} from 'react'
 
 const SelectorForm = (props) => {
+  const [selector, setSelector] = useState("");
+
+  const handleChange = (event) => {
+    setSelector(event.target.value);
+  }
   return (
-    <form id = "addSelectorForm" onSubmit={(e)=>{handleSubmit(e)}}>
+    <form id = "addSelectorForm">
         <input 
           type = "text"
           id = "addSelectorInput"
           className = "selector-input"
+          onChange={handleChange}
         />
-        <button type = "submit">
+        <button  
+          onClick={() => {
+            props.addElement(selector);
+          }}
+        >
           +
         </button>
       </form>
