@@ -1,8 +1,27 @@
 import React from 'react'
 
-const PropertiesList = () => {
+const PropertiesList = ({element, properties, onPropertyChange}) => {
+    const handlePropertyChange = (properties) => {
+        onPropertyChange(properties)
+    }
     return (
-        <div>PropertiesList</div>
+        <div className = "floatful--element-properties">
+            <h3>{element} Properties</h3>
+            <ul className = "floatful--properties-list">
+                {properties.map((property) => {
+                    <li key={property}>
+                        <label>
+                            {property}
+                            <input
+                                type="text"
+                                value={properties[property]}
+                                onChange={(e) => handlePropertyChange(property, e)}
+                            />
+                        </label>
+                    </li>
+                })}
+            </ul>
+        </div>
     )
 }
 

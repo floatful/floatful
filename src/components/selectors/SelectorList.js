@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SelectorList = (props) => {
-    const Elements = ['div', 'p', 'h1'];
+    const elements = ['div', 'p', 'h1'];
 
     const handleElementClick = (element) => {
         props.onElementSelect(element);
@@ -11,7 +11,7 @@ const SelectorList = (props) => {
         <>
             <div>SelectorList</div>
             <ul className = "floatful--selector-list">
-                {Elements.map((element) => {
+                {elements.map((element) => {
                     <li key = {element} onClick={() => handleElementClick(element)}>
                         {element}
                     </li>

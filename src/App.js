@@ -28,12 +28,19 @@ const App = () => {
 			<h1>Floatful</h1>
 			<SelectorList 
 				onElementSelect={handleElementSelect}
-			></SelectorList>
-			<PropertiesList 
-				properties = {elementProperties} 
-				onPropertyChange = {() =>{}}
-			></PropertiesList>
-			<ElementVisualizer elements = {selectedElements} properties = {elementProperties}></ElementVisualizer>
+			/>
+			{selectedElements.map((element, i) => {
+				<PropertiesList 
+					key = {element}
+					element = {element}
+					properties = {elementProperties[i]}
+					onPropertyChange = {() =>{}}
+				/>
+			})}
+			<ElementVisualizer 
+				elements = {selectedElements}
+				properties = {elementProperties}
+			/>
 		</>
     );
 }
