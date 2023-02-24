@@ -13,7 +13,7 @@ const SelectorList = ({elements, onElementSelect}) => {
                 {elements.map((element) => {return(
 					<li 
 						key = {element} onClick={() => 
-						handleElementClick(element)}
+						handleElementClick([element])}
 					>
 						Element: {element}
 					</li>

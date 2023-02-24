@@ -9,7 +9,7 @@ const App = () => {
 
 	const [elements, setElements] = useState(['div', 'h1']);
 	const [selectedElements, setSelectedElements] = useState(['div']);
-	const [elementProperties, setElementProperties] = useState([[{"name":"margin","value":"2px"}]]);
+	const [elementProperties, setElementProperties] = useState([{"name":"margin","value":"2px"}]);
 
 	const getElementProperties = (element) => {
 		return {};
@@ -39,10 +39,14 @@ const App = () => {
 					onPropertyChange = {() =>{}}
 				/>
 			)})}
-			<ElementVisualizer 
-				elements = {selectedElements}
-				properties = {elementProperties}
-			/>
+			
+			{selectedElements.map((element, i) => {return(
+				<ElementVisualizer 
+					key = {element}
+					element = {element}
+					properties = {elementProperties[i]}
+				/>
+			)})}
 		</>
     );
 }

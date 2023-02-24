@@ -8,14 +8,14 @@ const PropertiesList = ({element, properties, onPropertyChange}) => {
         <div className = "floatful--element-properties">
             <h3>{element} Properties</h3>
             <ul className = "floatful--properties-list">
-                {properties.map((property) => {return(
-                    <li key={property.name}>
+                {Object.entries(properties).map((key, value) => {return(
+                    <li key={key}>
                         <label>
-                            {property.name}
+                            {key}
                             <input
                                 type="text"
-                                value={property.value}
-                                onChange={(e) => handlePropertyChange(property, e)}
+                                value={value}
+                                onChange={(e) => handlePropertyChange((key, value), e)}
                             />
                         </label>
                     </li>
