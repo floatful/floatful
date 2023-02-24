@@ -1,10 +1,18 @@
 import React from 'react'
 
-const ElementVisualizer = (props) => {
+const ElementVisualizer = ({element, properties}) => {
 
-  	return (
-    	<div>ElementVisualizer</div>
-  	)
+	const elementStyle = { ...properties };
+
+	return (
+	  <div className="element-visualizer">
+		{element && (
+		  <div className={`element-${element}`} style={elementStyle}>
+			{element}
+		  </div>
+		)}
+	  </div>
+	);
 }
 
 export default ElementVisualizer
