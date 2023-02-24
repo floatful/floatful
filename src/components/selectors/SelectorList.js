@@ -1,21 +1,23 @@
 import React from 'react'
 
-const SelectorList = (props) => {
-    const elements = ['div', 'p', 'h1'];
+const SelectorList = ({elements, onElementSelect}) => {
 
     const handleElementClick = (element) => {
-        props.onElementSelect(element);
+        onElementSelect(element);
     };
 
     return (
         <>
-            <div>SelectorList</div>
+            <div>Selectors</div>
             <ul className = "floatful--selector-list">
-                {elements.map((element) => {
-                    <li key = {element} onClick={() => handleElementClick(element)}>
-                        {element}
-                    </li>
-                })}
+                {elements.map((element) => {return(
+					<li 
+						key = {element} onClick={() => 
+						handleElementClick(element)}
+					>
+						Element: {element}
+					</li>
+                )})}
             </ul>
         </>
     );

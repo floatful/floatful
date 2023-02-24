@@ -6,11 +6,7 @@ const ElementVisualizer = ({element, properties}) => {
 
 	return (
 	  <div className="element-visualizer">
-		{element && (
-		  <div className={`element-${element}`} style={elementStyle}>
-			{element}
-		  </div>
-		)}
+		{element}
 	  </div>
 	);
 }
