@@ -1,65 +1,41 @@
 import './css/App.css';
 import React, {useState} from 'react';
-import Selector from './components/selectors/Selector';
-import SelectorForm from './components/selectors/SelectorForm';
-import Element from './components/visualizer/Element';
+import SelectorList from './components/selectors/SelectorList';
+import PropertiesList from './components/properties/PropertiesList';
+import ElementVisualizer from './components/visualizer/Element';
 
 
 const App = () => {
 
-  /*const [Elements, setElements] = useState([
-    {
-      'selector': 'div',
-      'rules': {
-        'color':'blue',
-        'backgroundColor':'gray'
-      }
-    },
-    {
-      'selector': 'a',
-      'rules': {
-        'color':'blue',
-        'backgroundColor':'gray'
-      }
-    }
-  ]);*/
+	const [selectedElements, setSelectedElements] = useState([]);
+	const [elementProperties, setElementProperties] = useState([{}]);
 
-  const [Elements, setElements] = useState(['div', 'a']);
+	const getElementProperties = (element) => {
+		return {};
+	}
 
-  const addElement = (e) => {
-    console.log("Trying to add element")
-    setElements([...Elements, e]);
-    //setElements([...Elements, {'selector':e, 'rules':{}}]);
-    console.log(Elements);
-  }
+	const handleElementSelect = (elements) => {
+		setSelectedElements(elements);
+		var properties = [];
+		selectedElements.forEach((element) => {
+			properties = [...properties, getElementProperties(element)]
+		});
+		setElementProperties(properties);
+	};
 
-  /* NOT SURE IF THIS WORKS YET
-  const removeElement = (e) => {
-    this.setState(prevState => ({Elements: prevState.Elements.filter(element => element !== e)}));
-  }
-  */
-
-  const listElements = Elements.map((e) => {
-    <>
-      <p>Element</p>
-    </>
-  });
-
-  return (
-    <>
-      <h1>Floatful</h1>
-      <h2>Selectors</h2>
-      <SelectorForm addElement={addElement}/>
-
-      <ul id = "listSelectors">
-        <Selector path = {"div"}/>
-      </ul>
-      <div className="Elements">
-        {listElements}
-      </div>
-      <Element></Element>
-    </>
-  );
+	return (
+		<>
+			<h1>Floatful</h1>
+			<SelectorList 
+				onElementSelect={handleElementSelect}
+			></SelectorList>
+			<PropertiesList 
+				properties = {elementProperties} 
+				onPropertyChange = {() =>{}}
+			></PropertiesList>
+			<ElementVisualizer elements = {selectedElements} properties = {elementProperties}></ElementVisualizer>
+		</>
+    );
 }
 
 export default App;
