@@ -9,9 +9,10 @@ const SelectorList = ({elements, onElementSelect}) => {
     return (
         <>
             <div>Selectors</div>
-            <ul className = "floatful--selector-list">
+            <ul className = "floatful--selectors">
                 {elements.map((element) => {return(
 					<li 
+                        className = "floatful--selector"
 						key = {element} onClick={() => 
 						handleElementClick([element])}
 					>

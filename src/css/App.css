@@ -1,11 +1,17 @@
 .floatful {
   box-sizing: border-box
 }
-.selector {
-  list-style-type:lower-greek
-}
 .selector-title {
   padding-right: 10px;
+}
+
+.floatful--selectors {
+  list-style-type: none;
+  padding: 0;
+
+}
+.floatful--selector {
+  cursor: pointer;
 }
 /*
 OLD STYLING FROM ORIGINAL TESTS, NOT TO REMOVE IN CASE I WANT TO REUSE IT

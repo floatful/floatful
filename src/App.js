@@ -9,27 +9,62 @@ const App = () => {
 
 	const [elements, setElements] = useState(['div', 'h1']);
 	const [selectedElements, setSelectedElements] = useState(['div']);
+	const [properties, setProperties] = useState({
+		"div":{
+			"name":"margin",
+			"value":"2px"
+		},
+		"h1":{
+			"name":"font-size",
+			"value":"2rem"
+		}
+	})
 	const [elementProperties, setElementProperties] = useState([{"name":"margin","value":"2px"}]);
 
-	const getElementProperties = (element) => {
-		return {};
-	}
-
+	/**
+	 * 
+	 * @param {*} elements 
+	 */
 	const handleElementSelect = (elements) => {
-		setSelectedElements(elements);
-		var properties = [];
-		selectedElements.forEach((element) => {
-			properties = [...properties, getElementProperties(element)]
-		});
-		setElementProperties(properties);
+		if(elements) {
+			setSelectedElements(elements);
+
+			var properties = [];
+			selectedElements.forEach((element) => {
+				properties = [...properties, getElementProperties(element)]
+			});
+			setElementProperties(properties);
+		}
 	};
 
+	/**
+	 * 	FUNCTION:
+	 * 		handleElementCreate
+	 * 	DESCRIPTION:
+	 * 	@param {*} element new element created by the user, with blank 
+	 */
+	const handleElementCreate = (element) => {
+		if(element) {
+			setElements(...elements, element);
+			setProperties({...properties, element:{}});
+		}
+	}
+
+	// More will probably be added to this.
+	const getElementProperties = (element) => {
+		return properties[element];
+	}
+
+	/*
+
+	*/
 	return (
 		<>
 			<h1>Floatful</h1>
 			<SelectorList 
 				elements = {elements}
 				onElementSelect={handleElementSelect}
+				onElementCreate={handleElementCreate}
 			/>
 			{selectedElements.map((element, i) => {return(
 				<PropertiesList 

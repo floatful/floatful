@@ -11,13 +11,13 @@ const PropertiesList = ({element, properties, onPropertyChange}) => {
                 {Object.entries(properties).map((key, value) => {return(
                     <li key={key}>
                         <label>
-                            {key}
-                            <input
-                                type="text"
-                                value={value}
-                                onChange={(e) => handlePropertyChange((key, value), e)}
-                            />
+                            {key} 
                         </label>
+                        <input
+                            type="text"
+                            value={value}
+                            onChange={(e) => handlePropertyChange((key, value), e)}
+                        />
                     </li>
                 )})}
             </ul>
