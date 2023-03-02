@@ -11,15 +11,14 @@ const App = () => {
 	const [selectedElements, setSelectedElements] = useState(['div']);
 	const [properties, setProperties] = useState({
 		"div":{
-			"name":"margin",
-			"value":"2px"
+			"margin":"10px",
+			"padding":"5px"
 		},
 		"h1":{
-			"name":"font-size",
-			"value":"2rem"
+			"font-size":"2rem"
 		}
 	})
-	const [elementProperties, setElementProperties] = useState([{"name":"margin","value":"2px"}]);
+	const [elementProperties, setElementProperties] = useState([{"margin":"2px","padding":"5px"}]);
 
 	/**
 	 * 
