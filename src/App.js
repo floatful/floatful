@@ -110,6 +110,13 @@ const App = () => {
 				onElementSelect={handleElementSelect}
 				onElementCreate={handleElementCreate}
 			/>
+			{
+				/*	TODO:
+					Refactor code to not have to map over same selected elements twice,
+					while still separating properties list from element visualizer within
+					the app (one will be main content and the other will be in right menu)
+				*/
+			}
 			{selectedElements.map((element, i) => {return(
 				<PropertiesList 
 					key = {element}

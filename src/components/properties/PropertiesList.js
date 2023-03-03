@@ -13,11 +13,20 @@ const PropertiesList = ({element, properties, onPropertyChange}) => {
                         <label>
                             {property["name"]}
                         </label>
+                        {
+                            /*  TODO:
+                                Fix handlePropertyChange, and possibly refactor to account for
+                                variable property due to number and keyword-based values.
+                            */
+                        }
                         {property["number"] != null ?
                             <>
                             <input
                                 type="text"
                                 value={property["number"]}
+                                {
+                                    //This is broken...
+                                }
                                 onChange={(e) => handlePropertyChange((key, value), e)}
                             />
                             <span>{property["units"]}</span>
