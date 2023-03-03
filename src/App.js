@@ -4,21 +4,66 @@ import SelectorList from './components/selectors/SelectorList';
 import PropertiesList from './components/properties/PropertiesList';
 import ElementVisualizer from './components/visualizer/ElementVisualizer';
 
+/*
+	ELEMENTS AND PROPERTIES OBJECTS:
+
+	ELEMENT EXAMPLE:
+	{
+		selector: "h1 a",
+		element: "a"
+	}
+
+	PROPERTY EXAMPLE 1 (with number-based value):
+	{
+		"name": "font-size",
+		"key": "fontSize",
+		"value":"2px",
+		"number": 2,
+		"unit": "px"
+	}
+	PROPERTY EXAMPLE 1 (with keyword-based value):
+	{
+		"name": "text-decoration",
+		"key": "textDecoration",
+		"value": "none"
+	}
+ */
 
 const App = () => {
 
-	const [elements, setElements] = useState(['div', 'h1']);
-	const [selectedElements, setSelectedElements] = useState(['div']);
-	const [properties, setProperties] = useState({
-		"div":{
-			"margin":"10px",
-			"padding":"5px"
-		},
-		"h1":{
-			"font-size":"2rem"
-		}
-	})
-	const [elementProperties, setElementProperties] = useState([{"margin":"2px","padding":"5px"}]);
+	const DEFAULT_ELEMENTS = ['div', 'h1'];
+	const DEFAULT_PROPERTIES = {
+		"div":[
+			{
+				"name":"margin",
+				"key":"margin",
+				"value":"10px",
+				"number":10,
+				"units":"px"
+			},
+			{
+				"name":"padding",
+				"key":"padding",
+				"value":"5px",
+				"number":5,
+				"units":"px"
+			}
+		],
+		"h1":[
+			{
+				"name":"font-size",
+				"key":"fontSize",
+				"value":"2rem",
+				"number":2,
+				"units":"rem"
+			}
+		]
+	}
+
+	const [elements, setElements] = useState(DEFAULT_ELEMENTS);
+	const [selectedElements, setSelectedElements] = useState([]);
+	const [properties, setProperties] = useState(DEFAULT_PROPERTIES)
+	const [elementProperties, setElementProperties] = useState([]);
 
 	/**
 	 * 
@@ -28,11 +73,11 @@ const App = () => {
 		if(elements) {
 			setSelectedElements(elements);
 
-			var properties = [];
+			var propertiesList = [];
 			selectedElements.forEach((element) => {
-				properties = [...properties, getElementProperties(element)]
+				propertiesList = [...propertiesList, getElementProperties(element)]
 			});
-			setElementProperties(properties);
+			setElementProperties(propertiesList);
 		}
 	};
 

@@ -13,8 +13,8 @@ const SelectorList = ({elements, onElementSelect}) => {
                 {elements.map((element) => {return(
 					<li 
                         className = "floatful--selector"
-						key = {element} onClick={() => 
-						handleElementClick([element])}
+						key = {element}
+                        onClick={() => handleElementClick([element])}
 					>
 						Element: {element}
 					</li>
