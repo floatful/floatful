@@ -1,14 +1,15 @@
 import React from 'react'
 
-const PropertiesList = ({element, properties, onPropertyChange}) => {
+const PropertiesList = ({element, onPropertyChange}) => {
     const handlePropertyChange = (properties) => {
         onPropertyChange(properties)
     }
+    const properties = element.properties;
     return (
         <div className = "floatful--element-properties">
-            <h3>{element} Properties</h3>
+            <h3>{element.selector} Properties</h3>
             <ul className = "floatful--properties-list">
-                {Object.entries(properties).map((property) => {return(
+                {properties.map((property) => {return(
                     <li key={property["key"]}>
                         <label>
                             {property["name"]}
@@ -21,13 +22,13 @@ const PropertiesList = ({element, properties, onPropertyChange}) => {
                         }
                         {property["number"] != null ?
                             <>
+                            {
+                                // TODO: Add onChange functionality, currently readOnly mode.
+                            }
                             <input
                                 type="text"
                                 value={property["number"]}
-                                {
-                                    //This is broken...
-                                }
-                                onChange={(e) => handlePropertyChange((key, value), e)}
+                                readOnly
                             />
                             <span>{property["units"]}</span>
                             </>
@@ -35,7 +36,7 @@ const PropertiesList = ({element, properties, onPropertyChange}) => {
                             <input
                                 type="text"
                                 value={property["value"]}
-                                onChange={(e) => handlePropertyChange()}
+                                readOnly
                             />
                         }
                     </li>
