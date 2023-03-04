@@ -1,4 +1,4 @@
-.floatful {
+* {
   box-sizing: border-box
 }
 .selector-title {
@@ -12,6 +12,14 @@
 }
 .floatful--selector {
   cursor: pointer;
+}
+
+.floatful--sidebar-properties {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100vh;
 }
 /*
 OLD STYLING FROM ORIGINAL TESTS, NOT TO REMOVE IN CASE I WANT TO REUSE IT
