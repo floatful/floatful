@@ -65,4 +65,24 @@ class CSSTextProperty {
     }
 }
 
-export {CSSNumericProperty, CSSTextProperty};
+/**
+ * Unrestricted property, value can be any string.
+ */
+class CSSContentProperty {
+    constructor(name, key, value) {
+        this.name = name;
+        this.key = key;
+        this.value = value;
+    }
+
+    updateValue(value) {
+        this.value = value;
+    }
+
+    toString() {
+        return `${this.name}: ${this.value}`;
+    }
+
+}
+
+export {CSSNumericProperty, CSSTextProperty, CSSContentProperty};

@@ -1,7 +1,5 @@
 import React from 'react'
-import { CSSTextProperty, CSSNumericProperty } from '../../data/CSSProperty'
-import NumericProperty from './NumericProperty'
-import TextProperty from './TextProperty'
+import Property from './Property'
 
 const PropertiesList = ({element, onPropertyChange}) => {
     const handlePropertyChange = (property) => {
@@ -9,25 +7,16 @@ const PropertiesList = ({element, onPropertyChange}) => {
         //onPropertyChange(properties)
     }
     const properties = element.properties;
+
     return (
         <div className = "floatful--sidebar-properties">
             <h3>{element.selector} Properties</h3>
             <ul className = "floatful--properties-list">
-                {properties.map((property) => {return(
+                {properties.map((property) => (
                     <li key={property["key"]}>
-                        {property instanceof CSSNumericProperty ?
-                            <NumericProperty
-                                property={property}
-                                onPropertyChange={handlePropertyChange}
-                            />
-                            :
-                            <TextProperty
-                                property={property}
-                                onPropertyChange={handlePropertyChange}
-                            />
-                        }
+                        <Property property={property} onPropertyChange={handlePropertyChange}/>
                     </li>
-                )})}
+                ))}
             </ul>
         </div>
     )
