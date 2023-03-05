@@ -97,20 +97,20 @@ const App = () => {
 					the app (one will be main content and the other will be in right menu)
 				*/
 			}
-			{selectedElements.map((element, i) => {return(
+			{selectedElements.map((element, i) => (
 				<PropertiesList 
 					key = {element}
 					element = {element}
 					onPropertyChange = {() =>{}}
 				/>
-			)})}
+			))}
 			
-			{selectedElements.map((element, i) => {return(
+			{selectedElements.map((element, i) => (
 				<ElementVisualizer 
 					key = {element}
 					element = {element}
 				/>
-			)})}
+			))}
 		</>
     );
 }

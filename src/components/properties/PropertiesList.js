@@ -17,11 +17,9 @@ const PropertiesList = ({element, onPropertyChange}) => {
             <ul className = "floatful--properties-list">
 
                 {properties.map((property) => (
-                    <li key={property["key"]}>
-                        <Property property={property} onPropertyChange={handlePropertyChange}/>
-                    </li>
+                    <Property key={property["key"]} property={property} onPropertyChange={handlePropertyChange}/>
                 ))}
-                
+
             </ul>
 
         </div>
