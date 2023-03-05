@@ -5,52 +5,29 @@ import { CSSContentProperty, CSSNumericProperty, CSSTextProperty } from '../../d
 
 const Property = ({property, onPropertyChange}) => {
 
-    let editable;
+    let propertyInput = (property instanceof CSSNumericProperty || property instanceof CSSContentProperty) && (
+        <input type = "text" value = {property.name} readOnly/>
+    );
 
-    if(property instanceof CSSTextProperty) {
-
-        editable =
-            <select 
-                name = "value" 
-                value = {property.value} 
-                onChange={(e)=>{onPropertyChange(e.target.value)}}
-            >
-                {property.values.map(value => (
-                    <option key = {value} value = {value}>
-                        {value}
-                    </option>
-                ))}
-            </select>
-
-    } else if (property instanceof CSSNumericProperty) {
-
-        editable =
-            <>
-                <input type = "text" value = {property.value} readOnly />
-                <select 
-                    name = "unit" 
-                    value = {property.unit}
-                    onChange={(e) => {onPropertyChange(e.target.value)}}
-                >
-                    {property.units.map(unit => (
-                        <option key = {unit} value = {unit}>
-                            {unit != null ? unit : "--"}
-                        </option>
-                    ))}
-                </select>
-            </>
-
-    } else if (property instanceof CSSContentProperty) {
-
-        editable =
-            <input type = "text" value = {property.value} readOnly />
-
-    }
+    let propertyDropdown = (property instanceof CSSTextProperty || property instanceof CSSNumericProperty) && (
+        <select 
+            name = "unit" 
+            value = {property.unit}
+            onChange={(e) => {onPropertyChange(e.target.value)}}
+        >
+            {property.units.map(unit => (
+                <option key = {unit} value = {unit}>
+                    {unit != null ? unit : "--"}
+                </option>
+            ))}
+        </select>
+    );
 
     return (
         <li>
             <label>{property.name}</label>
-            {editable}
+            {propertyInput}
+            {propertyDropdown}
         </li>
     )
 }
