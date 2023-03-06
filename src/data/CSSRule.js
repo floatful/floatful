@@ -11,22 +11,6 @@ class CSSRule {
         // TODO: update element based on this too
     }
 
-    updateElement(element) {
-        this.element = element
-    }
-
-    removeProperty(key) {
-        this.properties = this.properties.filter(property => property.key !== key);
-    }
-
-    addProperty(property) {
-        this.properties.push(property);
-    }
-
-    getProperty(key) {
-        return this.properties.find(property => property.key === key);
-    }
-
     toString() {
         return `${this.name} {\n${this.properties.map(property => `  ${property.toString()}`).join('\n')}\n}`;
     }

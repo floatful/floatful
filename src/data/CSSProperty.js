@@ -11,6 +11,7 @@ const PROPERTY_TYPES = {
  * to be stored without a unit.
  */
 class CSSProperty {
+
     constructor(type, cssName, jsName, value, values = null, unit=null) {
         this.name = cssName;
         this.key = jsName;
