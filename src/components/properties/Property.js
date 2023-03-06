@@ -34,7 +34,7 @@ const Property = ({property, onPropertyChange}) => {
             <select 
                 name = "unit" 
                 value = {property.unit}
-                onChange={(e) => {onPropertyChange(e.target.value)}}
+                onChange={(e) => {onPropertyChange(property, e.target.value)}}
             >
                 {property.units.map(unit => (
                     <option key = {unit} value = {unit}>

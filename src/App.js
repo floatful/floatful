@@ -5,41 +5,16 @@ import PropertiesList from './components/properties/PropertiesList';
 import ElementVisualizer from './components/visualizer/ElementVisualizer';
 
 import {CSSNumericProperty, CSSTextProperty} from './data/CSSProperty.js'
-import CSSElement from './data/CSSElement';
-
-/*
-	ELEMENTS AND PROPERTIES OBJECTS:
-
-	ELEMENT EXAMPLE:
-	{
-		selector: "h1 a",
-		element: "a"
-	}
-
-	PROPERTY EXAMPLE 1 (with number-based value):
-	{
-		"name": "font-size",
-		"key": "fontSize",
-		"value":"2px",
-		"number": 2,
-		"unit": "px"
-	}
-	PROPERTY EXAMPLE 1 (with keyword-based value):
-	{
-		"name": "text-decoration",
-		"key": "textDecoration",
-		"value": "none"
-	}
- */
+import CSSRule from './data/CSSRule';
 
 const App = () => {
 
 	const DEFAULT_ELEMENTS = [
-		new CSSElement("div", null, [
+		new CSSRule("div", "div", [
 			new CSSNumericProperty("margin", "margin", 10, "px"),
 			new CSSTextProperty("box-sizing", "boxSizing", ["border-box", "inherit"], "border-box")
 		]),
-		new CSSElement("h1", null, [
+		new CSSRule("h1", "h1", [
 			new CSSNumericProperty("font-size", "fontSize", 2, "rem")
 		])
 	];
@@ -47,41 +22,31 @@ const App = () => {
 	const [elements, setElements] = useState(DEFAULT_ELEMENTS);
 	const [selectedElements, setSelectedElements] = useState([]);
 
-	/**
-	 * 
-	 * @param {*} elements 
-	 */
+	
 	const handleElementSelect = (elements) => {
 		if(elements) {
 			setSelectedElements(elements);
 
 			var propertiesList = [];
 			selectedElements.forEach((element) => {
-				propertiesList = [...propertiesList, getElementProperties(element)]
+				propertiesList = [...propertiesList, element.properties]
 			});
 		}
 	};
 
-	/**
-	 * 	FUNCTION:
-	 * 		handleElementCreate
-	 * 	DESCRIPTION:
-	 * 	@param {*} element new element created by the user, with blank 
-	 */
+	
 	const handleElementCreate = (element) => {
 		if(element) {
 			setElements(...elements, element);
 		}
 	}
 
-	// More will probably be added to this.
-	const getElementProperties = (element) => {
-		return element.properties;
+	const handlePropertyChange = (element, property, value) => {
+		let newElements = [...elements];
+		newElements.find(element);
 	}
 
-	/*
-
-	*/
+	
 	return (
 		<>
 			<h1>Floatful</h1>
@@ -101,7 +66,7 @@ const App = () => {
 				<PropertiesList 
 					key = {element}
 					element = {element}
-					onPropertyChange = {() =>{}}
+					onPropertyChange = {handlePropertyChange}
 				/>
 			))}
 			
