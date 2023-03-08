@@ -10,7 +10,9 @@ const SelectorList = ({rules, onRuleSelect}) => {
         <>
             <div>Selectors</div>
             <ul className = "floatful--selectors">
-                {rules.map((rule) => (
+                { console.log(rules)}
+                {
+                rules.map((rule) => (
 					<li 
                         className = "floatful--selector"
 						key = {rule.selector}

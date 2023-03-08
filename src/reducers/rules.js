@@ -29,7 +29,7 @@ const rulesReducer = (rules, action) => {
         case ACTIONS.RULE.UPDATE_SELECTOR:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
-                    return {...rule, selector: action.payload.selector};
+                    return new CSSRule(action.payload.selector, rule.element, rule.properties);
                 }
                 return rule;
             });
@@ -37,7 +37,7 @@ const rulesReducer = (rules, action) => {
         case ACTIONS.RULE.UPDATE_ELEMENT:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
-                    return {...rule, element: action.payload.element};
+                    return new CSSRule(rule.selector, action.payload.element, rule.properties);
                 }
                 return rule;
             });
@@ -46,7 +46,7 @@ const rulesReducer = (rules, action) => {
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
                     const newProperties = [...rule.properties, action.payload.newProperty];
-                    return {...rule, properties: newProperties};
+                    return new CSSRule(rule.selector, rule.elements, newProperties);
                 }
                 return rule;
             });
@@ -54,8 +54,8 @@ const rulesReducer = (rules, action) => {
         case ACTIONS.PROPERTY.DELETE:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
-                    return {...rule, 
-                        properties: rule.properties.filter(property => property.key !== action.payload.property)};
+                    return new CSSRule(rule.selector, rule.element, 
+                        rule.properties.filter(property => property.key !== action.payload.property));
                 }
                 return rule;
             });
@@ -67,7 +67,7 @@ const rulesReducer = (rules, action) => {
         case ACTIONS.PROPERTY.UPDATE_VALUE:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
-                    return rule.properties.map(property => {
+                    return new CSSRule(rule.selector, rule.element, (rule.properties.map(property => {
                         if(property.key === action.payload.property
                                 && (
                                     (property.type === PROPERTY_TYPES.UNRESTRICTED)
@@ -79,7 +79,7 @@ const rulesReducer = (rules, action) => {
                             return {...property, value:action.payload.value}
                         }
                         return property;
-                    });
+                    })));
                 }
                 return rule;
             });
@@ -91,14 +91,16 @@ const rulesReducer = (rules, action) => {
         case ACTIONS.PROPERTY.UPDATE_UNIT:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
-                    rule.properties.map(property => {
+                    return new CSSRule(rule.selector, rule.element, (rule.properties.map(property => {
                         if(property.key === action.payload.property 
                                 && property.type === PROPERTY_TYPES.NUMERICAL
                                 && property.NUMERICAL_UNITS.includes(action.payload.unit)) {
-                            property.unit = action.payload.unit;
+                            return {...property, unit: action.payload.unit};
                         }
-                    });
+                        return property;
+                    })));
                 }
+                return rule;
             }); 
 
         default:
