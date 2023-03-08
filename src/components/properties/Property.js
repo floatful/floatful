@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { CSSProperty, PROPERTY_TYPES } from '../../data/CSSProperty'
+import { PROPERTY_TYPES } from '../../data/CSSProperty'
 
 import {ACTIONS} from '../../reducers/rules';
 
@@ -11,9 +11,6 @@ const Property = ({selector, property, dispatch}) => {
 
     const handleValueChange = (e) => {
         setValue(e.target.value);
-        //alert(currentValue + " == " + e.target.val);
-        console.log(e);
-        console.log(e.target.value);
         dispatch({
             type: ACTIONS.PROPERTY.UPDATE_VALUE,
             payload:{
@@ -25,9 +22,6 @@ const Property = ({selector, property, dispatch}) => {
     }
     const handleUnitChange = (e) => {
         setUnit(e.target.value);
-        alert(currentUnit + " == " + e.target.val);
-        console.log(e);
-        console.log(e.target.value);
         dispatch({
             type: ACTIONS.PROPERTY.UPDATE_UNIT,
             payload:{
@@ -69,7 +63,7 @@ const Property = ({selector, property, dispatch}) => {
                 value = {currentUnit}
                 onChange={handleUnitChange}
             >
-                {property.units.map(unit => (
+                {property.NUMERICAL_UNITS.map(unit => (
                     <option key = {unit} value = {unit}>
                         {unit != null ? unit : "--"}
                     </option>

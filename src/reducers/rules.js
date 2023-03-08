@@ -1,5 +1,5 @@
 import CSSRule from "../data/CSSRule";
-import {PROPERTY_TYPES} from "../data/CSSProperty";
+import {CSSProperty, PROPERTY_TYPES} from "../data/CSSProperty";
 
 const ACTIONS = {
     RULE: {
@@ -68,7 +68,7 @@ const rulesReducer = (rules, action) => {
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
                     return new CSSRule(rule.selector, rule.element, (rule.properties.map(property => {
-                        if(property.key === action.payload.property
+                        if(property.key === action.payload.property.key
                                 && (
                                     (property.type === PROPERTY_TYPES.UNRESTRICTED)
                                     || (property.type === PROPERTY_TYPES.NUMERICAL 
@@ -76,7 +76,8 @@ const rulesReducer = (rules, action) => {
                                     || (property.type === PROPERTY_TYPES.RESTRICTED
                                         && property.values.includes(action.payload.value))
                                 )) {
-                            return {...property, value:action.payload.value}
+                            return new CSSProperty(property.type, property.name, property.key, 
+                                action.payload.value, property.values, property.unit);
                         }
                         return property;
                     })));
@@ -92,10 +93,11 @@ const rulesReducer = (rules, action) => {
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
                     return new CSSRule(rule.selector, rule.element, (rule.properties.map(property => {
-                        if(property.key === action.payload.property 
+                        if(property.key === action.payload.property.key 
                                 && property.type === PROPERTY_TYPES.NUMERICAL
                                 && property.NUMERICAL_UNITS.includes(action.payload.unit)) {
-                            return {...property, unit: action.payload.unit};
+                            return new CSSProperty(property.type, property.name, property.key, 
+                                property.value, null, action.payload.unit);
                         }
                         return property;
                     })));
