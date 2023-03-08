@@ -4,7 +4,7 @@ import SelectorList from './components/selectors/SelectorList';
 import PropertiesList from './components/properties/PropertiesList';
 import ElementVisualizer from './components/visualizer/ElementVisualizer';
 
-import {CSSNumericProperty, CSSTextProperty} from './data/CSSProperty.js'
+import {CSSProperty, PROPERTY_TYPES} from './data/CSSProperty.js'
 import CSSRule from './data/CSSRule';
 
 import {rulesReducer, ACTIONS} from './reducers/rules'
@@ -13,11 +13,11 @@ const App = () => {
 
 	const DEFAULT_ELEMENTS = [
 		new CSSRule("div", "div", [
-			new CSSNumericProperty("margin", "margin", 10, "px"),
-			new CSSTextProperty("box-sizing", "boxSizing", ["border-box", "inherit"], "border-box")
+			new CSSProperty(PROPERTY_TYPES.NUMERICAL, "margin", "margin", 10, null, "px"),
+			new CSSProperty(PROPERTY_TYPES.RESTRICTED, "box-sizing", "boxSizing", "border-box", ["border-box", "inherit"])
 		]),
 		new CSSRule("h1", "h1", [
-			new CSSNumericProperty("font-size", "fontSize", 2, "rem")
+			new CSSProperty(PROPERTY_TYPES.NUMERICAL, "font-size", "fontSize", 2, null, "rem")
 		])
 	];
 

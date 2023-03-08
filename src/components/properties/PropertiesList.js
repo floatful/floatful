@@ -1,6 +1,5 @@
 import React from 'react'
 import Property from './Property'
-import { rulesReducer, ACTIONS } from '../../reducers/rules'
 
 const PropertiesList = ({rule, dispatch}) => {
 

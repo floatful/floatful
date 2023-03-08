@@ -1,44 +1,58 @@
-import React from 'react'
-import { CSSContentProperty, CSSNumericProperty, CSSTextProperty } from '../../data/CSSProperty'
+import React, {useState} from 'react'
+import { CSSProperty, PROPERTY_TYPES } from '../../data/CSSProperty'
 
-import {rulesReducer, ACTIONS} from '../../reducers/rules';
+import {ACTIONS} from '../../reducers/rules';
 
 
 const Property = ({selector, property, dispatch}) => {
 
-    let propertyInput = (property instanceof CSSNumericProperty || property instanceof CSSContentProperty) && (
+    const [currentValue, setValue] = useState(property.value);
+    const [currentUnit, setUnit] = useState(property.unit);
+
+    const handleValueChange = (e) => {
+        setValue(e.target.value);
+        //alert(currentValue + " == " + e.target.val);
+        console.log(e);
+        console.log(e.target.value);
+        dispatch({
+            type: ACTIONS.PROPERTY.UPDATE_VALUE,
+            payload:{
+                selector: selector,
+                property: property,
+                value: e.target.value
+            }
+        })
+    }
+    const handleUnitChange = (e) => {
+        setUnit(e.target.value);
+        alert(currentUnit + " == " + e.target.val);
+        console.log(e);
+        console.log(e.target.value);
+        dispatch({
+            type: ACTIONS.PROPERTY.UPDATE_UNIT,
+            payload:{
+                selector: selector,
+                property: property,
+                unit: e.target.value
+            }
+        });
+    }
+
+    let propertyInput = (property.type === PROPERTY_TYPES.NUMERICAL || property.type === PROPERTY_TYPES.UNRESTRICTED) && (
         <input 
             type = "text" 
-            value = {property.value} 
-            onChange={(e) => {
-                dispatch({
-                    type: ACTIONS.PROPERTY.UPDATE_VALUE,
-                    payload: {
-                        selector: selector,
-                        property: property,
-                        value: e.target.value
-                    }
-                });
-            }}
+            value = {currentValue} 
+            onChange={handleValueChange}
         />
     );
 
     let propertyDropdown;
-    if(property instanceof CSSTextProperty) {
+    if(property.type === PROPERTY_TYPES.RESTRICTED) {
         propertyDropdown = 
             <select 
-                name = "unit" 
-                value = {property.unit}
-                onChange={(e) => {
-                    dispatch({
-                        type: ACTIONS.PROPERTY.UPDATE_UNIT,
-                        payload: {
-                            selector: selector,
-                            property: property,
-                            unit: e.target.value
-                        }
-                    });
-                }}
+                name = "value" 
+                value = {currentValue}
+                onChange={handleValueChange}
             >
                 {property.values.map(value => (
                     <option key = {value} value = {value}>
@@ -48,21 +62,12 @@ const Property = ({selector, property, dispatch}) => {
             </select>;
     }
 
-    if(property instanceof CSSNumericProperty) {
+    if(property.type === PROPERTY_TYPES.NUMERICAL) {
         propertyDropdown =
             <select 
                 name = "unit" 
-                value = {property.unit}
-                onChange={(e) => {
-                    dispatch({
-                        type: ACTIONS.PROPERTY.UPDATE_VALUE,
-                        payload: {
-                            selector: selector,
-                            property: property,
-                            value: e.target.value
-                        }
-                    });
-                }}
+                value = {currentUnit}
+                onChange={handleUnitChange}
             >
                 {property.units.map(unit => (
                     <option key = {unit} value = {unit}>
