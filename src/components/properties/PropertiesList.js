@@ -1,6 +1,11 @@
 import React from 'react'
 import Property from './Property'
 
+/**
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const PropertiesList = ({rule, dispatch}) => {
 
     const properties = rule.properties;

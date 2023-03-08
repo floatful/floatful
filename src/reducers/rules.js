@@ -20,11 +20,14 @@ const rulesReducer = (rules, action) => {
 
     switch(action.type) {
 
+    /* RULE FUNCTIONS */
         case ACTIONS.RULE.ADD:
             return [...rules, new CSSRule(action.payload.selector, action.payload.element, action.payload.properties)];
 
+
         case ACTIONS.RULE.DELETE:
             return rules.filter(rule => rule.selector !== action.payload.selector);
+
 
         case ACTIONS.RULE.UPDATE_SELECTOR:
             return rules.map(rule => {
@@ -34,6 +37,7 @@ const rulesReducer = (rules, action) => {
                 return rule;
             });
         
+
         case ACTIONS.RULE.UPDATE_ELEMENT:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
@@ -42,6 +46,11 @@ const rulesReducer = (rules, action) => {
                 return rule;
             });
 
+
+
+    /* PROPERTY FUNCTIONS */
+
+        /* */
         case ACTIONS.PROPERTY.ADD:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {
@@ -51,6 +60,7 @@ const rulesReducer = (rules, action) => {
                 return rule;
             });
         
+        /* */
         case ACTIONS.PROPERTY.DELETE:
             return rules.map(rule => {
                 if(rule.selector === action.payload.selector) {

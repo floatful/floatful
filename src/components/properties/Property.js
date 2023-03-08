@@ -3,7 +3,6 @@ import { PROPERTY_TYPES } from '../../data/CSSProperty'
 
 import {ACTIONS} from '../../reducers/rules';
 
-
 const Property = ({selector, property, dispatch}) => {
 
     const [currentValue, setValue] = useState(property.value);

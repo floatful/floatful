@@ -24,29 +24,13 @@ const App = () => {
 	const [rules, dispatch] = useReducer(rulesReducer, DEFAULT_ELEMENTS)
 	const [selectedRules, setSelectedRules] = useState([]);
 
-	//const [elements, setElements] = useState(DEFAULT_ELEMENTS);
-	//const [selectedElements, setSelectedElements] = useState([]);
-
 	
 	const handleRuleSelect = (rules) => {
 		if(rules) {
 			setSelectedRules(rules);
 		}
 	};
-
-	/*
-	const handleElementCreate = (element) => {
-		if(element) {
-			setElements(...elements, element);
-		}
-	}
-
-	const handlePropertyChange = (element, property, value) => {
-		let newElements = [...elements];
-		newElements.find(element);
-	}
-	*/
-
+	
 	
 	return (
 		<>
@@ -65,18 +49,6 @@ const App = () => {
 					the app (one will be main content and the other will be in right menu)
 				*/
 			}
-			{
-			/*
-			selectedElements.map((element, i) => (
-				<PropertiesList 
-					key = {element}
-					
-					element = {element}
-					onPropertyChange = {handlePropertyChange}
-				/>
-			))
-			*/
-			}
 
 			{rules.map(
 				(rule) => { return selectedRules.includes(rule.selector) &&
@@ -87,15 +59,6 @@ const App = () => {
 				/>
 				}
 			)}
-			
-			{
-			/*selectedElements.map((element, i) => (
-				<ElementVisualizer 
-					key = {element}
-					element = {element}
-				/>
-			))*/
-			}
 
 			{rules.map(
 				(rule) => { return selectedRules.includes(rule.selector) &&
