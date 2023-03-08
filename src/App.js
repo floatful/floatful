@@ -78,13 +78,15 @@ const App = () => {
 			*/
 			}
 
-			{selectedRules.map((rule, i) => (
+			{rules.map(
+				(rule) => { return selectedRules.includes(rule.selector) &&
 				<PropertiesList 
 					key = {rule}
 					rule = {rule}
 					dispatch = {dispatch}
 				/>
-			))}
+				}
+			)}
 			
 			{
 			/*selectedElements.map((element, i) => (
@@ -95,12 +97,14 @@ const App = () => {
 			))*/
 			}
 
-			{selectedRules.map((rule, i) => (
-				<ElementVisualizer 
-					key = {rule}
-					rule = {rule}
-				/>
-			))}
+			{rules.map(
+				(rule) => { return selectedRules.includes(rule.selector) &&
+					<ElementVisualizer 
+						key = {rule.selector}
+						rule = {rule}
+					/>
+				}
+			)}
 		</>
     );
 }
