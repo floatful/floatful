@@ -1,15 +1,25 @@
 import React from 'react'
 import { CSSContentProperty, CSSNumericProperty, CSSTextProperty } from '../../data/CSSProperty'
 
+import {rulesReducer, ACTIONS} from '../../reducers/rules';
 
 
-const Property = ({property, onPropertyChange}) => {
+const Property = ({selector, property, dispatch}) => {
 
     let propertyInput = (property instanceof CSSNumericProperty || property instanceof CSSContentProperty) && (
         <input 
             type = "text" 
             value = {property.value} 
-            onChange={(e) => {onPropertyChange(e.target.value)}}
+            onChange={(e) => {
+                dispatch({
+                    type: ACTIONS.PROPERTY.UPDATE_VALUE,
+                    payload: {
+                        selector: selector,
+                        property: property,
+                        value: e.target.value
+                    }
+                });
+            }}
         />
     );
 
@@ -19,7 +29,16 @@ const Property = ({property, onPropertyChange}) => {
             <select 
                 name = "unit" 
                 value = {property.unit}
-                onChange={(e) => {onPropertyChange(e.target.value)}}
+                onChange={(e) => {
+                    dispatch({
+                        type: ACTIONS.PROPERTY.UPDATE_UNIT,
+                        payload: {
+                            selector: selector,
+                            property: property,
+                            unit: e.target.value
+                        }
+                    });
+                }}
             >
                 {property.values.map(value => (
                     <option key = {value} value = {value}>
@@ -34,7 +53,16 @@ const Property = ({property, onPropertyChange}) => {
             <select 
                 name = "unit" 
                 value = {property.unit}
-                onChange={(e) => {onPropertyChange(property, e.target.value)}}
+                onChange={(e) => {
+                    dispatch({
+                        type: ACTIONS.PROPERTY.UPDATE_VALUE,
+                        payload: {
+                            selector: selector,
+                            property: property,
+                            value: e.target.value
+                        }
+                    });
+                }}
             >
                 {property.units.map(unit => (
                     <option key = {unit} value = {unit}>

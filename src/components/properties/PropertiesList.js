@@ -1,22 +1,20 @@
 import React from 'react'
 import Property from './Property'
+import { rulesReducer, ACTIONS } from '../../reducers/rules'
 
-const PropertiesList = ({element, onPropertyChange}) => {
-    const handlePropertyChange = (property, value) => {
-        alert(value);
-        onPropertyChange(element, property, value);
-    }
-    const properties = element.properties;
+const PropertiesList = ({rule, dispatch}) => {
+
+    const properties = rule.properties;
 
     return (
 
         <div className = "floatful--sidebar-properties">
 
-            <h3>{element.selector} Properties</h3>
+            <h3>{rule.selector} Properties</h3>
 
             <ul className = "floatful--properties-list">
                 {properties.map((property) => (
-                    <Property key={property["key"]} property={property} onPropertyChange={handlePropertyChange}/>
+                    <Property key={property["key"]} selector = {rule.selector} property={property} dispatch = {dispatch}/>
                 ))}
             </ul>
 

@@ -1,5 +1,5 @@
 import CSSRule from "../data/CSSRule";
-import {CSSProperty, PROPERTY_TYPES} from "../data/CSSProperty";
+import {PROPERTY_TYPES} from "../data/CSSProperty";
 
 const ACTIONS = {
     RULE: {
@@ -16,7 +16,7 @@ const ACTIONS = {
     }
 }
 
-const reducer = (rules, action) => {
+const rulesReducer = (rules, action) => {
 
     switch(action.type) {
 
@@ -106,4 +106,4 @@ const reducer = (rules, action) => {
     }
 }
 
-export {reducer, ACTIONS}
+export {rulesReducer, ACTIONS}

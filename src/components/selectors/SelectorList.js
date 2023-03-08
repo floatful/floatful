@@ -1,22 +1,22 @@
 import React from 'react'
 
-const SelectorList = ({elements, onElementSelect}) => {
+const SelectorList = ({rules, onRuleSelect}) => {
 
-    const handleElementClick = (element) => {
-        onElementSelect(element);
+    const handleRuleClick = (rule) => {
+        onRuleSelect(rule);
     };
 
     return (
         <>
             <div>Selectors</div>
             <ul className = "floatful--selectors">
-                {elements.map((element) => (
+                {rules.map((rule) => (
 					<li 
                         className = "floatful--selector"
-						key = {element.selector}
-                        onClick={() => handleElementClick([element])}
+						key = {rule.selector}
+                        onClick={() => handleRuleClick([rule])}
 					>
-						Element: {element.selector}
+						Element: {rule.selector}
 					</li>
                 ))}
             </ul>
