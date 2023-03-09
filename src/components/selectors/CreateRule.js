@@ -8,16 +8,14 @@ const CreateRule = ({dispatch, onClose}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		alert("Submitted!");
-		console.log("Submit");
-		/*dispatch({
+		dispatch({
 			type: ACTIONS.RULE.ADD,
 			payload: {
 				selector:selector,
 				element:element,
 				properties:[]
 			}
-		});*/
+		});
 		onClose(false);
 	}
 
@@ -30,14 +28,14 @@ const CreateRule = ({dispatch, onClose}) => {
 					type = "text"
 					id="selectorInput"
 					placeholder = ".class"
-					readOnly
+					onChange={(e) => {setSelector(e.target.value)}}
 				/>
 				<label htmlFor='elementInput'>Element</label>
 				<input 
 					type="text" 
 					id="elementInput"
 					placeholder ="div"
-					readOnly
+					onChange={(e)=>{setElement(e.target.value)}}
 				/>
 				<p>More Options Coming soon, like:</p>
 				<ul>

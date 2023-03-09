@@ -17,7 +17,8 @@ const App = () => {
 			new CSSProperty(PROPERTY_TYPES.RESTRICTED, "box-sizing", "boxSizing", "border-box", ["border-box", "inherit"])
 		]),
 		new CSSRule("h1", "h1", [
-			new CSSProperty(PROPERTY_TYPES.NUMERICAL, "font-size", "fontSize", 2, null, "rem")
+			new CSSProperty(PROPERTY_TYPES.NUMERICAL, "font-size", "fontSize", 2, null, "rem"),
+			new CSSProperty(PROPERTY_TYPES.UNRESTRICTED, "color", "color", "black")
 		])
 	];
 
@@ -25,17 +26,18 @@ const App = () => {
 	const [selectedRules, setSelectedRules] = useState([]);
 
 	
-	const handleRuleSelect = (rules) => {
+	const handleRuleSelect = (e, ruleSelector) => {
 		if(rules) {
-			setSelectedRules(rules);
+			(e.metaKey || e.ctrlKey) ? setSelectedRules([...selectedRules, ruleSelector]) : setSelectedRules([ruleSelector]);
 		}
-	};
+	}
 	
 	
 	return (
 		<>
 			<SelectorList 
 				rules = {rules}
+				selectedRules = {rules}
 				dispatch = {dispatch}
 				onRuleSelect={handleRuleSelect}
 			/>
@@ -46,18 +48,18 @@ const App = () => {
 					the app (one will be main content and the other will be in right menu)
 				*/
 			}
-
-			{rules.map((rule) => { return selectedRules.includes(rule.selector) &&
-				<PropertiesList 
-					key = {rule}
-					rule = {rule}
-					dispatch = {dispatch}
-				/>
-			})}
+			<div className = "floatful--properties">
+				{rules.map((rule) => { return selectedRules.indexOf(rule.selector)>=0 &&
+					<PropertiesList 
+						key = {rule.selector}
+						rule = {rule}
+						dispatch = {dispatch}
+					/>
+				})}
+			</div>
 
 			<div className = "floatful floatful--visualizer">
-				{rules.map(
-					(rule) => { return selectedRules.includes(rule.selector) &&
+				{rules.map((rule) => { return selectedRules.indexOf(rule.selector)>=0 &&
 						<ElementVisualizer 
 							key = {rule.selector}
 							rule = {rule}

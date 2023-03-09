@@ -12,7 +12,7 @@ const PropertiesList = ({rule, dispatch}) => {
 
     return (
 
-        <div className = "floatful--properties">
+        <div className = "floatful--element-properties">
 
             <h3>{rule.selector} Properties</h3>
 

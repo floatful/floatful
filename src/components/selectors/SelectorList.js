@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CreateRule from './CreateRule';
 
-const SelectorList = ({rules, onRuleSelect, dispatch}) => {
+const SelectorList = ({rules, selectedRules, onRuleSelect, dispatch}) => {
 
     const [createRuleModalStatus, setCreateRuleModalStatus] = useState(false);
 
@@ -9,10 +9,6 @@ const SelectorList = ({rules, onRuleSelect, dispatch}) => {
         if(bool !== createRuleModalStatus)
             setCreateRuleModalStatus(bool);
     }
-
-    const handleRuleClick = (rule) => {
-        onRuleSelect(rule.selector);
-    };
 
     return (
         <div className = "floatful floatful--selectors">
@@ -23,9 +19,9 @@ const SelectorList = ({rules, onRuleSelect, dispatch}) => {
 					<li 
                         className = "floatful--selector"
 						key = {rule.selector}
-                        onClick={() => handleRuleClick(rule)}
+                        onClick={(e) => {onRuleSelect(e, rule.selector)}}
 					>
-						Element: {rule.selector}
+						{rule.selector}
 					</li>
                 ))}
             </ul>
