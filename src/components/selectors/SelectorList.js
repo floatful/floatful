@@ -1,6 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import CreateRule from './CreateRule';
 
-const SelectorList = ({rules, onRuleSelect}) => {
+const SelectorList = ({rules, onRuleSelect, dispatch}) => {
+
+    const [createRuleModalStatus, setCreateRuleModalStatus] = useState(false);
+
+    const toggleCreateRuleModal = (bool) => {
+        if(bool !== createRuleModalStatus)
+            setCreateRuleModalStatus(bool);
+    }
 
     const handleRuleClick = (rule) => {
         onRuleSelect(rule.selector);
@@ -8,6 +16,9 @@ const SelectorList = ({rules, onRuleSelect}) => {
 
     return (
         <>
+            {console.log(createRuleModalStatus)}
+            {createRuleModalStatus && <CreateRule dispatch={dispatch}/>
+            }
             <div>Selectors</div>
             <ul className = "floatful--selectors">
                 {rules.map((rule) => (
@@ -20,6 +31,7 @@ const SelectorList = ({rules, onRuleSelect}) => {
 					</li>
                 ))}
             </ul>
+            <p className = "floatful--clickable" onClick={() => {toggleCreateRuleModal(true)}}>+</p>
         </>
     );
 }

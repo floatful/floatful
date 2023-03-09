@@ -5,6 +5,10 @@
   padding-right: 10px;
 }
 
+.floatful--clickable:hover {
+  cursor: pointer;
+}
+
 .floatful--selectors {
   list-style-type: none;
   padding: 0;
