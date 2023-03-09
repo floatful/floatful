@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { PROPERTY_TYPES } from '../../data/CSSProperty'
+import { PROPERTY_TYPES, NUMERICAL_UNITS } from '../../data/CSSProperty'
 
 import {ACTIONS} from '../../reducers/rules';
 
@@ -32,21 +32,13 @@ const Property = ({selector, property, dispatch}) => {
     }
 
     let propertyInput = (property.type === PROPERTY_TYPES.NUMERICAL || property.type === PROPERTY_TYPES.UNRESTRICTED) && (
-        <input 
-            type = "text" 
-            value = {currentValue} 
-            onChange={handleValueChange}
-        />
+        <input type = "text" value = {currentValue} onChange={handleValueChange}/>
     );
 
     let propertyDropdown;
     if(property.type === PROPERTY_TYPES.RESTRICTED) {
         propertyDropdown = 
-            <select 
-                name = "value" 
-                value = {currentValue}
-                onChange={handleValueChange}
-            >
+            <select name = "value" value = {currentValue} onChange={handleValueChange}>
                 {property.values.map(value => (
                     <option key = {value} value = {value}>
                         {value != null ? value : "--"}
@@ -57,12 +49,8 @@ const Property = ({selector, property, dispatch}) => {
 
     if(property.type === PROPERTY_TYPES.NUMERICAL) {
         propertyDropdown =
-            <select 
-                name = "unit" 
-                value = {currentUnit}
-                onChange={handleUnitChange}
-            >
-                {property.NUMERICAL_UNITS.map(unit => (
+            <select name = "unit" value = {currentUnit} onChange={handleUnitChange}>
+                {NUMERICAL_UNITS.map(unit => (
                     <option key = {unit} value = {unit}>
                         {unit != null ? unit : "--"}
                     </option>

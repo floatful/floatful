@@ -21,38 +21,33 @@ const CreateRule = ({dispatch, onClose}) => {
 
   	return (
     	<div className="floatful--modal-create-rule">
+			
 			<h2>Create a New CSS Rule</h2>
+
         	<form onSubmit = {handleSubmit}>
 				<label htmlFor="selectorInput">Selector</label>
-				<input 
-					type = "text"
-					id="selectorInput"
-					placeholder = ".class"
+				<input type = "text" id="selectorInput" placeholder = ".class"
 					onChange={(e) => {setSelector(e.target.value)}}
 				/>
+
 				<label htmlFor='elementInput'>Element</label>
-				<input 
-					type="text" 
-					id="elementInput"
-					placeholder ="div"
+				<input type="text" id="elementInput" placeholder ="div"
 					onChange={(e)=>{setElement(e.target.value)}}
 				/>
+
 				<p>More Options Coming soon, like:</p>
 				<ul>
 					<li>Custom, reusable property groups</li>
 					<li>Breakpoint-specific properties</li>
 					<li>And More!</li>
 				</ul>
-				<input
-					type="button"
-					value="Cancel"
+
+				<input type="button" value="Cancel"
 					onClick={() => {onClose(false)}}
 				/>
-				<input 
-					type="submit" 
-					value="Submit"
-				/>
+				<input type="submit" value="Submit"/>
 			</form>
+
     	</div>
   	)
 }

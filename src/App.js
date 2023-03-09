@@ -11,7 +11,7 @@ import {rulesReducer, ACTIONS} from './reducers/rules'
 
 const App = () => {
 
-	const DEFAULT_ELEMENTS = [
+	const DEFAULT_RULES = [
 		new CSSRule("div", "div", [
 			new CSSProperty(PROPERTY_TYPES.NUMERICAL, "margin", "margin", 10, null, "px"),
 			new CSSProperty(PROPERTY_TYPES.RESTRICTED, "box-sizing", "boxSizing", "border-box", ["border-box", "inherit"])
@@ -22,7 +22,7 @@ const App = () => {
 		])
 	];
 
-	const [rules, dispatch] = useReducer(rulesReducer, DEFAULT_ELEMENTS)
+	const [rules, dispatch] = useReducer(rulesReducer, DEFAULT_RULES)
 	const [selectedRules, setSelectedRules] = useState([]);
 
 	
@@ -64,8 +64,7 @@ const App = () => {
 							key = {rule.selector}
 							rule = {rule}
 						/>
-					}
-				)}
+				})}
 			</div>
 		</>
     );
