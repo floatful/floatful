@@ -15,12 +15,10 @@ const SelectorList = ({rules, onRuleSelect, dispatch}) => {
     };
 
     return (
-        <>
-            {console.log(createRuleModalStatus)}
-            {createRuleModalStatus && <CreateRule dispatch={dispatch}/>
-            }
-            <div>Selectors</div>
-            <ul className = "floatful--selectors">
+        <div className = "floatful floatful--selectors">
+            {createRuleModalStatus && <CreateRule dispatch={dispatch} onClose={toggleCreateRuleModal}/>}
+            <h2>Rules</h2>
+            <ul className = "floatful--selector-list">
                 {rules.map((rule) => (
 					<li 
                         className = "floatful--selector"
@@ -31,8 +29,8 @@ const SelectorList = ({rules, onRuleSelect, dispatch}) => {
 					</li>
                 ))}
             </ul>
-            <p className = "floatful--clickable" onClick={() => {toggleCreateRuleModal(true)}}>+</p>
-        </>
+            <button className = "floatful--clickable" onClick={() => {toggleCreateRuleModal(!createRuleModalStatus)}}>+</button>
+        </div>
     );
 }
 

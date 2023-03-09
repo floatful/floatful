@@ -34,13 +34,10 @@ const App = () => {
 	
 	return (
 		<>
-			<h1>Floatful</h1>
 			<SelectorList 
 				rules = {rules}
 				dispatch = {dispatch}
-				//elements = {elements}
 				onRuleSelect={handleRuleSelect}
-				//onElementCreate={handleElementCreate}
 			/>
 			{
 				/*	TODO:
@@ -50,24 +47,24 @@ const App = () => {
 				*/
 			}
 
-			{rules.map(
-				(rule) => { return selectedRules.includes(rule.selector) &&
+			{rules.map((rule) => { return selectedRules.includes(rule.selector) &&
 				<PropertiesList 
 					key = {rule}
 					rule = {rule}
 					dispatch = {dispatch}
 				/>
-				}
-			)}
+			})}
 
-			{rules.map(
-				(rule) => { return selectedRules.includes(rule.selector) &&
-					<ElementVisualizer 
-						key = {rule.selector}
-						rule = {rule}
-					/>
-				}
-			)}
+			<div className = "floatful floatful--visualizer">
+				{rules.map(
+					(rule) => { return selectedRules.includes(rule.selector) &&
+						<ElementVisualizer 
+							key = {rule.selector}
+							rule = {rule}
+						/>
+					}
+				)}
+			</div>
 		</>
     );
 }

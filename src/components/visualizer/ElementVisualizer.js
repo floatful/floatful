@@ -22,7 +22,7 @@ const ElementVisualizer = ({rule}) => {
   	const elementProps = { className: elementClassName, style: style };
 
   	return (
-    	<div className="element-visualizer">
+    	<div className="floatful floatful--element">
       		{rule && React.createElement(rule.element, elementProps, rule.selector)}
 		</div>
   	);

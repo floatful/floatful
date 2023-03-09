@@ -8,7 +8,7 @@ const CreateRule = ({dispatch, onClose}) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//alert("Submitted!");
+		alert("Submitted!");
 		console.log("Submit");
 		/*dispatch({
 			type: ACTIONS.RULE.ADD,
@@ -18,7 +18,7 @@ const CreateRule = ({dispatch, onClose}) => {
 				properties:[]
 			}
 		});*/
-		onClose();
+		onClose(false);
 	}
 
   	return (
@@ -45,6 +45,11 @@ const CreateRule = ({dispatch, onClose}) => {
 					<li>Breakpoint-specific properties</li>
 					<li>And More!</li>
 				</ul>
+				<input
+					type="button"
+					value="Cancel"
+					onClick={() => {onClose(false)}}
+				/>
 				<input 
 					type="submit" 
 					value="Submit"

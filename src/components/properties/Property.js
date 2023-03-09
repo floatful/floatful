@@ -71,8 +71,8 @@ const Property = ({selector, property, dispatch}) => {
     };
 
     return (
-        <li>
-            <label>{property.name}</label>
+        <li className ="floatful floatful--property">
+            <label>{property.name}</label><br/>
             {propertyInput}
             {propertyDropdown}
         </li>
