@@ -23,11 +23,12 @@ const AddProperty = ({ selector, dispatch }) => {
 				property: new CSSProperty(
 					PROPERTY_TYPES.UNRESTRICTED,
 					newProperty,
-					newProperty,
-					0
+					CSSProperty.toCamelCase(newProperty),
+					"0"
 				),
 			},
 		});
+		close();
 	};
 
 	return (
