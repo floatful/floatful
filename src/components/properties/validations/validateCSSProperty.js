@@ -1,5 +1,6 @@
 import validate from "../../../data/css-properties.json";
 import { NUMERICAL_UNITS } from "../../../data/CSSProperty";
+import Colors from "../../../data/color-values.json";
 
 const validateCSSProperty = (property) => {
 	const name = property.name;
@@ -26,7 +27,7 @@ const isValidColorRGB = (value) => {
 	);
 };
 const isValidColorName = (value) => {
-	return false;
+	return Colors.toLowercase().includes(value.toLowercase());
 };
 const isValidColorHex = (value) => {
 	return /#(?:[0-9a-fA-f]{8}|[0-9a-fA-f]{6}|[0-9a-fA-f]{3})$/.test(value);
