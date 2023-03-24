@@ -30,6 +30,16 @@ const Property = ({ selector, property, dispatch }) => {
 		});
 	};
 
+	const handleDelete = (e) => {
+		dispatch({
+			type: ACTIONS.PROPERTY.DELETE,
+			payload: {
+				selector: selector,
+				property: property,
+			},
+		});
+	};
+
 	let propertyInput = (property.type === PROPERTY_TYPES.NUMERICAL ||
 		property.type === PROPERTY_TYPES.UNRESTRICTED) && (
 		<input type="text" value={currentValue} onChange={handleValueChange} />
@@ -70,6 +80,11 @@ const Property = ({ selector, property, dispatch }) => {
 			<br />
 			{propertyInput}
 			{propertyDropdown}
+			<input
+				onClick={(e) => handleDelete(e)}
+				value={"🗑"}
+				type="button"
+			></input>
 		</li>
 	);
 };

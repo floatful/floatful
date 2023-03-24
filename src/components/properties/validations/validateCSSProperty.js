@@ -26,6 +26,11 @@ const isValidColorRGB = (value) => {
 		value
 	);
 };
+
+const isValidColorRGBA = (value) => {
+	return /^rgba\((?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),\s*(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),\s*(?:1?[0-9]{1,2}|2[0-4][0-9]|25[0-5]),\s*[\d.]+\)$/;
+};
+
 const isValidColorName = (value) => {
 	return Colors.toLowercase().includes(value.toLowercase());
 };
