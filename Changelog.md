@@ -12,6 +12,8 @@ These updates are stored in reverse-chronological order- so the latest updates a
 
 ### NEXT TODOS:
 
+-   Look into StreamSaver.js or whatwg/fs for file exporting
+
 ## [2023.03.13] - Hunter Ball
 
 ### Update Notes:
