@@ -71,6 +71,14 @@
   background-color: #efefef;
   height: 100vh;
 }
+
+.floatful--RGB-slider, .floatful--RGB-label {
+  display: block;
+}
+
+.floatful--hex-color-display {
+  height: 20px;
+}
 /*
 OLD STYLING FROM ORIGINAL TESTS, NOT TO REMOVE IN CASE I WANT TO REUSE IT
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { PROPERTY_TYPES, NUMERICAL_UNITS } from "../../data/CSSProperty";
 
 import { ACTIONS } from "../../reducers/rules";
+import ColorSelector from "./ColorSelection/ColorSelector";
 
 const Property = ({ selector, property, dispatch }) => {
 	const [currentValue, setValue] = useState(property.value);
@@ -85,6 +86,7 @@ const Property = ({ selector, property, dispatch }) => {
 				value={"🗑"}
 				type="button"
 			></input>
+			<ColorSelector property={property} dispatch={dispatch} />
 		</li>
 	);
 };

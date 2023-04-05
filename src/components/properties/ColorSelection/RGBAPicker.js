@@ -5,17 +5,17 @@ const RGBAPicker = ({ property, setNewValue }) => {
 		red: 0,
 		green: 0,
 		blue: 0,
-		alpha: 1,
+		alpha: 255,
 	});
 	const [hexValue, setHexValue] = useState("#000000FF");
 
 	const convertRGBtoHEX = () => {
 		return (
 			"#" +
-			rgbValue.red.toString(16) +
-			rgbValue.green.toString(16) +
-			rgbValue.blue.toString(16) +
-			rgbValue.alpha.toString(16)
+			parseInt(rgbValue.red).toString(16).padStart(2, "0") +
+			parseInt(rgbValue.green).toString(16).padStart(2, "0") +
+			parseInt(rgbValue.blue).toString(16).padStart(2, "0") +
+			parseInt(rgbValue.alpha).toString(16).padStart(2, "0")
 		);
 	};
 
@@ -33,15 +33,16 @@ const RGBAPicker = ({ property, setNewValue }) => {
 
 	return (
 		<div className="floatful floatful--hex-color-picker">
+			<p>{hexValue}</p>
 			<div
-				className="floatful-hex-color-display"
+				className="floatful--hex-color-display"
 				style={{ backgroundColor: hexValue }}
 			/>
 			<label
 				className="floatful floatful--RGB-label"
-				for={property + "--Color-Red"}
+				htmlFor={property + "--Color-Red"}
 			>
-				Red
+				Red: {parseInt(rgbValue.red).toString(16)}:{typeof rgbValue.red}
 			</label>
 			<input
 				className="floatful floatful--RGB-slider"
@@ -54,9 +55,9 @@ const RGBAPicker = ({ property, setNewValue }) => {
 			/>
 			<label
 				className="floatful floatful--RGB-label"
-				for={property + "--Color-Green"}
+				htmlFor={property + "--Color-Green"}
 			>
-				Green
+				Green: {rgbValue.green}
 			</label>
 			<input
 				className="floatful floatful--RGB-slider"
@@ -69,9 +70,9 @@ const RGBAPicker = ({ property, setNewValue }) => {
 			/>
 			<label
 				className="floatful floatful--RGB-label"
-				for={property + "--Color-Blue"}
+				htmlFor={property + "--Color-Blue"}
 			>
-				Blue
+				Blue: {rgbValue.blue}
 			</label>
 			<input
 				className="floatful floatful--RGB-slider"
@@ -84,9 +85,9 @@ const RGBAPicker = ({ property, setNewValue }) => {
 			/>
 			<label
 				className="floatful floatful--RGB-label"
-				for={property + "--Color-Alpha"}
+				htmlFor={property + "--Color-Alpha"}
 			>
-				Opacity
+				Opacity: {rgbValue.alpha}
 			</label>
 			<input
 				className="floatful floatful--RGB-slider"
@@ -97,12 +98,8 @@ const RGBAPicker = ({ property, setNewValue }) => {
 				value={rgbValue.alpha}
 				onChange={(e) => handleValueChange("alpha", e.target.value)}
 			/>
-			<input type="button" onClick={close()}>
-				Cancel
-			</input>
-			<input type="button" onClick={close(hexValue)}>
-				Save
-			</input>
+			<input value="Cancel" type="button" onClick={close()} />
+			<input value="Save" type="button" onClick={close(hexValue)} />
 		</div>
 	);
 };
