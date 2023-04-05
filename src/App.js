@@ -8,6 +8,7 @@ import { CSSProperty, PROPERTY_TYPES } from "./data/CSSProperty.js";
 import CSSRule from "./data/CSSRule";
 
 import { rulesReducer, ACTIONS } from "./reducers/rules";
+import ColorSelector from "./components/properties/ColorSelection/ColorSelector";
 
 const App = () => {
 	const DEFAULT_RULES = [
