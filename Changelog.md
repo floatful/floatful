@@ -5,6 +5,26 @@ These updates are stored in reverse-chronological order- so the latest updates a
 
 This changelog was started on March 13th 2023, so all changes before this are not listed here.
 
+## [2023.04.07-08]
+
+Author:[Hunter Ball](https://github.com/hunterball)
+
+### Update Notes:
+
+-   Started the move to Typescript
+    -   The main reason I decided to start switching everything to Typescript is that I have an interview that requires basic knowledge of typescript and I've been wanting to try it out for a little while. I actually really like it, it makes JS feel a bit more like Java because of the explicit types. It took a bit to get used to since I haven't worked with Java in about a year, but it feels more intentional when it comes to designing methods and classes.
+-   Completely abstracted Property types from the main Property class
+    -   The implementation is a bit weird, I've only had a little bit to think on it so I might decide to refactor this as an interface, but as of right now, the Property class still stands, with the values it can hold being interfaced instead. I thought this might allow for more flexible requirements for values, since theres so many different combinations that exist with CSS. It's definitely going to be complicated getting some of the nuances to general properties like animations, background, and even margin and padding accounted for. Probably won't worry about it until May/June or later, once I have the barebones stuff done.
+-   Created Archival folder
+    -   Because I've significantly refactored the foundational code for data handling, I decided to save the old files in a new folder for archiving stuff that isn't in production but might be useful later. That way if everything goes to crap I can at least look at the old code in the same folder to see what's up.
+
+### NEXT TO-DOs
+
+-   Finish converting stuff to TypeScript/TSX
+    -   This is gonna take a while, I'll slowly be going over everything over the next couple weeks.
+-   Unabstract property types for components, create different components for each value type for input.
+    -   Refactoring and abstracting has basically destroyed the actual app, so it won't show anything until I get this fixed.
+
 ## [2023.04.05]
 
 Author: [Hunter Ball](https://github.com/hunterball)
