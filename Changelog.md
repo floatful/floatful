@@ -1,13 +1,28 @@
 # Floatful Changelog
 
-Here is where you can see all of the changes to Floatful by the developers, categorized by day, by developer. This is not a list of changes for each commit, but rather an overview for all the commit changes over the course of the day by the developer. It also allows us to see our current goals and tasks that have not been accomplished, so it's easier to get back on track the next day/week.
+Here is where you can see all of the changes to Floatful by the developers, categorized by day, by developer. This is not so much for official release logs, but more so for personal ease of remembering what I last was doing and what I next wanted to get done. If development reaches beyond myself I will likely remove this file and implement something more official to track development work across different contributors.
+
 These updates are stored in reverse-chronological order- so the latest updates appear first.
 
 This changelog was started on March 13th 2023, so all changes before this are not listed here.
 
+## [2023.04.09]
+
+Author: [Hunter Ball](https://github.com/hunterball)
+
+### Update Notes:
+
+-   Separated PredefinedColors and NumericUnits into their own Typescript files, for more separation and just in case I need to use them in other files.
+-   Converted rulesReducer to typescript
+    -   The slow process of conversion continues. Reducers are still new to me, and I'm not sure if the version I created tonight will be final, because the Action type feels unneccessarily complicated. But this will help later on when the app becomes more complex. (even though it already feels so complex it's a bit hard to keep track of already.)
+
+### Going Forward:
+
+There's 13 more files as of today to convert, but many of these will be converted to .tsx files which contain a lot less logic, so hopefully they are a bit easier. I'm a bit scared to start working on the property editing components again. Now that I've abstracted the types and I know how I want the view to behave for each individual value, I realize there is a lot of work that needs to be done with viewing the property editing menu. That will be my main focus once I get the files converted.
+
 ## [2023.04.07-08]
 
-Author:[Hunter Ball](https://github.com/hunterball)
+Author: [Hunter Ball](https://github.com/hunterball)
 
 ### Update Notes:
 
