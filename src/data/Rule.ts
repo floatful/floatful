@@ -1,4 +1,5 @@
 import Property from "./Property";
+import { PropertyValue } from "./PropertyTypes";
 
 /**
  * Class representing a rule in CSS, referring to a specific selection (e.g. div > a) with specific properties.
@@ -63,17 +64,22 @@ class Rule {
 	};
 
 	/**
-	 * Returns a new Rule, identical to this instance, but changing one property to a new one with a new value
+	 * Returns a new Rule, identical to this instance, but changing the value of the specified property to a new one
 	 * @param property the Property object to update
-	 * @param newProperty the new Property to replace the original with
+	 * @param value the new Property value to replace the original with
 	 * @returns a new Rule instance with the changed property
 	 */
-	updateProperty = (property: Property, newProperty: Property) => {
+	updatePropertyValue = (
+		property: Property,
+		value: string | PropertyValue
+	) => {
 		return new Rule(
 			this.selector,
 			this.element,
 			this.properties.map((prop: Property) => {
-				return property.key === prop.key ? newProperty : property;
+				return property.key === prop.key
+					? property.updateValue(value)
+					: property;
 			})
 		);
 	};
