@@ -6,6 +6,16 @@ These updates are stored in reverse-chronological order- so the latest updates a
 
 This changelog was started on March 13th 2023, so all changes before this are not listed here.
 
+## [2023.04.13]
+
+Author: [Hunter Ball](https://github.com/hunterball)
+
+### Update Notes:
+
+-   Switched from create-react-app to vite
+    -   I did this partially because create-react-app was giving me errors for trying to add styled-components, and partly because I heard vite was easier to work with
+    -   Much of the visual interface of the application is gone sadly, and I needed to switch it to typescript anyways so I'll just have to work to get back that stuff in the next couple of weeks.
+
 ## [2023.04.09]
 
 Author: [Hunter Ball](https://github.com/hunterball)
