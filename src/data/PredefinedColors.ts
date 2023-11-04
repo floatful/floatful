@@ -143,4 +143,4 @@ const PredefinedColors: readonly string[] = [
 ] as const;
 type PredefinedColor = typeof PredefinedColors[number];
 
-export { PredefinedColors, PredefinedColor };
+export { PredefinedColors, type PredefinedColor };

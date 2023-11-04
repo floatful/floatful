@@ -19,4 +19,4 @@ const NumericUnits: readonly (string | null)[] = [
 ] as const;
 type NumericUnit = typeof NumericUnits[number];
 
-export { NumericUnits, NumericUnit };
+export { NumericUnits, type NumericUnit };

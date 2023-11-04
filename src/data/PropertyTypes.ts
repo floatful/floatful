@@ -182,11 +182,11 @@ class CardinalNumericValue implements PropertyValue {
 
 export {
 	PROPERTY_TYPE,
-	NumericUnits,
-	PredefinedColors,
-	PropertyValue,
-	NumericValue,
-	HexValue,
-	CardinalNumericValue,
-	PredefinedColorValue,
+	type NumericUnits,
+	type PredefinedColors,
+	type PropertyValue,
+	type NumericValue,
+	type HexValue,
+	type CardinalNumericValue,
+	type PredefinedColorValue,
 };
