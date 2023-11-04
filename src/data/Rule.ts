@@ -32,7 +32,7 @@ class Rule {
 	 * @param target new element to replace the current one
 	 * @returns new Rule instance with updated element
 	 */
-	setElement = (target: string) => {
+	setTarget = (target: string) => {
 		return new Rule(this.selector, target, this.properties);
 	};
 

@@ -6,7 +6,7 @@ enum ACTIONS {
 	ADD_RULE,
 	DELETE_RULE,
 	UPDATE_RULE_SELECTOR,
-	UPDATE_RULE_ELEMENT,
+	UPDATE_RULE_TARGET,
 	ADD_PROPERTY,
 	DELETE_PROPERTY,
 	UPDATE_PROPERTY_VALUE,
@@ -20,7 +20,7 @@ type Action =
 			};
 	  }
 	| {
-			type: ACTIONS.UPDATE_RULE_ELEMENT | ACTIONS.UPDATE_RULE_SELECTOR;
+			type: ACTIONS.UPDATE_RULE_TARGET | ACTIONS.UPDATE_RULE_SELECTOR;
 			payload: {
 				rule: Rule;
 				value: string;
@@ -59,10 +59,10 @@ const rulesReducer = (rules: Rule[], action: Action) => {
 					: rule;
 			});
 
-		case ACTIONS.UPDATE_RULE_ELEMENT:
+		case ACTIONS.UPDATE_RULE_TARGET:
 			return rules.map((rule: Rule) => {
 				return rule.selector === action.payload.rule.selector
-					? rule.setElement(action.payload.value)
+					? rule.setTarget(action.payload.value)
 					: rule;
 			});
 
