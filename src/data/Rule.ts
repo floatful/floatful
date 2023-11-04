@@ -9,12 +9,12 @@ import { PropertyValue } from "./PropertyTypes";
  */
 class Rule {
 	selector: string;
-	element: string;
+	target: string;
 	properties: Property[];
 
-	constructor(selector: string, element: string, properties: Property[]) {
+	constructor(selector: string, target: string, properties: Property[]) {
 		this.selector = selector;
-		this.element = element;
+		this.target = target;
 		this.properties = properties;
 	}
 
@@ -24,16 +24,16 @@ class Rule {
 	 * @returns new Rule instance
 	 */
 	setSelector = (selector: string) => {
-		return new Rule(selector, this.element, this.properties);
+		return new Rule(selector, this.target, this.properties);
 	};
 
 	/**
 	 * Returns a new Rule instance with the new given element.
-	 * @param element new element to replace the current one
+	 * @param target new element to replace the current one
 	 * @returns new Rule instance with updated element
 	 */
-	setElement = (element: string) => {
-		return new Rule(this.selector, element, this.properties);
+	setElement = (target: string) => {
+		return new Rule(this.selector, target, this.properties);
 	};
 
 	/**
@@ -42,7 +42,7 @@ class Rule {
 	 * @returns new Rule instance with new property included.
 	 */
 	addProperty = (property: Property) => {
-		return new Rule(this.selector, this.element, [
+		return new Rule(this.selector, this.target, [
 			...this.properties,
 			property,
 		]);
@@ -56,7 +56,7 @@ class Rule {
 	removeProperty = (property: Property) => {
 		return new Rule(
 			this.selector,
-			this.element,
+			this.target,
 			this.properties.filter((prop: Property) => {
 				return property.key !== prop.key;
 			})
@@ -75,7 +75,7 @@ class Rule {
 	) => {
 		return new Rule(
 			this.selector,
-			this.element,
+			this.target,
 			this.properties.map((prop: Property) => {
 				return property.key === prop.key
 					? property.updateValue(value)

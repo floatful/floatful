@@ -92,4 +92,4 @@ const rulesReducer = (rules: Rule[], action: Action) => {
 	}
 };
 
-export { rulesReducer, ACTIONS, Action };
+export { rulesReducer, ACTIONS, type Action };
