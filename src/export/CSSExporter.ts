@@ -1,8 +1,11 @@
+import Rule from "../data/Rule";
+
 /**
  * Class representing a CSS exporter, allowing users to export their floatful styles into a succinct CSS file
  */
 class CSSExporter {
-	constructor(rules) {
+	rules:Rule[]
+	constructor(rules:Rule[]) {
 		this.rules = rules;
 	}
 
