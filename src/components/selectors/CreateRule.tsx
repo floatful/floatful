@@ -1,26 +1,26 @@
 import React, {useState} from 'react'
-import { ACTIONS } from '../../reducers/rules';
+import { ACTIONS } from '../../reducers/rulesReducer';
 
-const CreateRule = ({dispatch, onClose}) => {
+const CreateRule = (props:{dispatch:({})=>{}, onClose:(close:boolean)=>{}}) => {
 
 	const [selector, setSelector] = useState('');
 	const [element, setElement] = useState('');
 
-	const handleSubmit = (e) => {
+	const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		dispatch({
-			type: ACTIONS.RULE.ADD,
+		props.dispatch({
+			type: ACTIONS.ADD_RULE,
 			payload: {
 				selector:selector,
 				element:element,
 				properties:[]
 			}
 		});
-		onClose(false);
+		props.onClose(false);
 	}
 
   	return (
-    	<div className="floatful--modal-create-rule">
+    	<div className="floatful--modal floatful--modal-create-rule">
 			
 			<h2>Create a New CSS Rule</h2>
 
@@ -43,7 +43,7 @@ const CreateRule = ({dispatch, onClose}) => {
 				</ul>
 
 				<input type="button" value="Cancel"
-					onClick={() => {onClose(false)}}
+					onClick={() => {props.onClose(false)}}
 				/>
 				<input type="submit" value="Submit"/>
 			</form>
