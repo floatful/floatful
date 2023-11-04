@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import CreateRule from './CreateRule';
 import Rule from '../../data/Rule';
+import { ACTIONS, Action } from '../../reducers/rulesReducer';
 
-const SelectorList = (props:{rules:Rule[], selectedRules:Rule[], onRuleSelect:(e:React.MouseEvent<HTMLLIElement>, selector:String)=>{}, dispatch:({})=>{}}) => {
+const SelectorList = (props:{rules:Rule[], selectedRules:Rule[], onRuleSelect:(e:React.MouseEvent<HTMLLIElement>, selector:String)=>any, dispatch:React.Dispatch<Action>}) => {
 
     const [createRuleModalStatus, setCreateRuleModalStatus] = useState(false);
 

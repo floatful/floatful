@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
-import { ACTIONS } from '../../reducers/rulesReducer';
+import { ACTIONS, Action } from '../../reducers/rulesReducer';
+import Rule from '../../data/Rule';
 
-const CreateRule = (props:{dispatch:({})=>{}, onClose:(close:boolean)=>{}}) => {
+const CreateRule = (props:{dispatch:React.Dispatch<Action>, onClose:(close:boolean)=>{}}) => {
 
 	const [selector, setSelector] = useState('');
 	const [element, setElement] = useState('');
@@ -11,11 +12,9 @@ const CreateRule = (props:{dispatch:({})=>{}, onClose:(close:boolean)=>{}}) => {
 		props.dispatch({
 			type: ACTIONS.ADD_RULE,
 			payload: {
-				selector:selector,
-				element:element,
-				properties:[]
+                rule: new Rule(selector,element,[])}
 			}
-		});
+		);
 		props.onClose(false);
 	}
 

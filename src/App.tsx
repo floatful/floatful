@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 import Rule from "./data/Rule";
 import Property from "./data/Rule";
+import { rulesReducer } from "./reducers/rulesReducer";
+import SelectorList from "./components/selectors/SelectorList";
 
 const App = () => {
 	const [count, setCount] = useState(0);
@@ -17,10 +19,19 @@ const App = () => {
 		padding: 2em;
 	`;
 
+	const testRules=[new Rule("p", "p", []), new Rule("div h1", "h1", [])];
+	const [rules, dispatch] = useReducer(rulesReducer, testRules);
+
 	return (
 		<AppView light>
 			<h1>Floatful</h1>
 			<p>Hello there!</p>
+			<SelectorList 
+				rules={rules} 
+				selectedRules={[]} 
+				onRuleSelect={(e:React.MouseEvent<HTMLLIElement>, selector:String) => {}}
+				dispatch={dispatch}
+			/>
 		</AppView>
 	);
 };
