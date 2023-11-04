@@ -30,4 +30,4 @@ const SelectorList = ({rules, selectedRules, onRuleSelect, dispatch}) => {
     );
 }
 
-export default SelectorList
+export default SelectorList;
