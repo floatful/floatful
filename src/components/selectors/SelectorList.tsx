@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import CreateRule from './CreateRule';
 import Rule from '../../data/Rule';
 import { ACTIONS, Action } from '../../reducers/rulesReducer';
+import Selector from './Selector';
 
 const SelectorList = (props:{rules:Rule[], selectedRules:Rule[], onRuleSelect:(e:React.MouseEvent<HTMLLIElement>, selector:string)=>any, dispatch:React.Dispatch<Action>}) => {
 
@@ -19,13 +20,7 @@ const SelectorList = (props:{rules:Rule[], selectedRules:Rule[], onRuleSelect:(e
             <h2>Rules</h2>
             <ul className = "floatful--selector-list">
                 {props.rules.map((rule:Rule) => (
-					<li 
-                        className = "floatful--selector"
-						key = {rule.selector}
-                        onClick={(e) => {props.onRuleSelect(e, rule.selector)}}
-					>
-						{rule.selector}
-					</li>
+                    <Selector key="rule.selector" rule={rule}/>
                 ))}
             </ul>
             <button className = "floatful--clickable" onClick={() => {toggleCreateRuleModal(!createRuleModalStatus)}}>+</button>

@@ -10,11 +10,11 @@ import { PropertyValue } from "./PropertyTypes";
 class Rule {
 	selector: string;
 	name?: string;
-	target?: string;
+	target: string;
 	properties: Property[];
 	children: Rule[];
 
-	constructor(selector: string, target?: string, name?: string, properties?: Property[], children?:Rule[]) {
+	constructor(selector: string, target: string, name?: string, properties?: Property[], children?:Rule[]) {
 		this.selector = selector;
 		this.name = name;
 		this.target = target;

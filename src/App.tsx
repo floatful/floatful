@@ -22,7 +22,7 @@ const App = () => {
 		padding: 2em;
 	`;
 
-	const testRules=[new Rule("p", "p", [new Property("fontSize", "font-size", [PROPERTY_TYPE.NUMERIC], "40")]), new Rule("div h1", "h1", [])];
+	const testRules=[new Rule("p", "p", undefined, [new Property("fontSize", "font-size", [PROPERTY_TYPE.NUMERIC], "40")]), new Rule("div", "div", undefined, undefined, [new Rule("h1", "h1")])];
 	const [rules, dispatch] = useReducer(rulesReducer, testRules);
 
 	const visualRule = rules.find((rule, index, array)=> {rule.selector === selectedRule});
