@@ -5,12 +5,15 @@ import "./App.css";
 import styled from "styled-components";
 
 import Rule from "./data/Rule";
-import Property from "./data/Rule";
+import Property from "./data/Property";
 import { rulesReducer } from "./reducers/rulesReducer";
 import SelectorList from "./components/selectors/SelectorList";
+import ElementVisualizer from "./components/visualizer/ElementVisualizer";
+import { PROPERTY_TYPE } from "./data/PropertyTypes";
 
 const App = () => {
 	const [count, setCount] = useState(0);
+	const [selectedRule, setSelectedRule] = useState('');
 
 	const AppView = styled.div<{ light: boolean }>`
 		background-color: ${(props) => (props.light ? "#e5e8f1" : "#22252f")};
@@ -19,8 +22,10 @@ const App = () => {
 		padding: 2em;
 	`;
 
-	const testRules=[new Rule("p", "p", []), new Rule("div h1", "h1", [])];
+	const testRules=[new Rule("p", "p", [new Property("fontSize", "font-size", [PROPERTY_TYPE.NUMERIC], "40")]), new Rule("div h1", "h1", [])];
 	const [rules, dispatch] = useReducer(rulesReducer, testRules);
+
+	const visualRule = rules.find((rule, index, array)=> {rule.selector === selectedRule});
 
 	return (
 		<AppView light>
@@ -29,9 +34,12 @@ const App = () => {
 			<SelectorList 
 				rules={rules} 
 				selectedRules={[]} 
-				onRuleSelect={(e:React.MouseEvent<HTMLLIElement>, selector:String) => {}}
+				onRuleSelect={(e:React.MouseEvent<HTMLLIElement>, selector:string) => {setSelectedRule(selector); console.log("Clicked!");}}
 				dispatch={dispatch}
 			/>
+			{
+				visualRule != undefined && <ElementVisualizer rule={visualRule}/>
+			}
 		</AppView>
 	);
 };

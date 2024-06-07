@@ -9,13 +9,17 @@ import { PropertyValue } from "./PropertyTypes";
  */
 class Rule {
 	selector: string;
-	target: string;
+	name?: string;
+	target?: string;
 	properties: Property[];
+	children: Rule[];
 
-	constructor(selector: string, target: string, properties: Property[]) {
+	constructor(selector: string, target?: string, name?: string, properties?: Property[], children?:Rule[]) {
 		this.selector = selector;
+		this.name = name;
 		this.target = target;
-		this.properties = properties;
+		this.properties = properties? properties : [];
+		this.children = children? children : [];
 	}
 
 	/**
@@ -24,7 +28,7 @@ class Rule {
 	 * @returns new Rule instance
 	 */
 	setSelector = (selector: string) => {
-		return new Rule(selector, this.target, this.properties);
+		return new Rule(selector, this.target, this.name, this.properties, this.children);
 	};
 
 	/**
@@ -33,7 +37,7 @@ class Rule {
 	 * @returns new Rule instance with updated element
 	 */
 	setTarget = (target: string) => {
-		return new Rule(this.selector, target, this.properties);
+		return new Rule(this.selector, target, this.name, this.properties, this.children);
 	};
 
 	/**
@@ -42,10 +46,10 @@ class Rule {
 	 * @returns new Rule instance with new property included.
 	 */
 	addProperty = (property: Property) => {
-		return new Rule(this.selector, this.target, [
+		return new Rule(this.selector, this.target, this.name, [
 			...this.properties,
 			property,
-		]);
+		], this.children);
 	};
 
 	/**
@@ -57,9 +61,11 @@ class Rule {
 		return new Rule(
 			this.selector,
 			this.target,
+			this.name,
 			this.properties.filter((prop: Property) => {
 				return property.key !== prop.key;
-			})
+			}),
+			this.children
 		);
 	};
 
@@ -76,11 +82,13 @@ class Rule {
 		return new Rule(
 			this.selector,
 			this.target,
+			this.name,
 			this.properties.map((prop: Property) => {
 				return property.key === prop.key
 					? property.updateValue(value)
 					: property;
-			})
+			}),
+			this.children
 		);
 	};
 }
