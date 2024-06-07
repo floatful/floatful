@@ -2,10 +2,22 @@ import Property from "./Property";
 import { PropertyValue } from "./PropertyTypes";
 
 /**
- * Class representing a rule in CSS, referring to a specific selection (e.g. div > a) with specific properties.
+ * Class representing a rule in CSS, referring to a specific selection (e.g. div > a) with 
+ * specific properties.
  *
  * Instances of this object are immutable because of their use in the react reducers,
  * so updating values within them through the given functions returns a new object instead.
+ * 
+ * TODO: name and children have been added to the class. 
+ * 	-	name is an optional name for the rule, which overrides the selector path when 
+ * 		displayed in the selector list. When the style is exported, the name is commented 
+ * 		above the rule in the stylesheet.
+ * 	-	children is an array of Rules that only exist underneath this Rule. For example, 
+ * 		if we wanted "div.header p", this rule would be "div.header" and would have the 
+ * 		child Rule "p"
+ * 
+ * These new parameters need to have setters, with the children parameter needing remove 
+ * and add functions.
  */
 class Rule {
 	selector: string;

@@ -18,6 +18,11 @@ const SelectorList = (props:{rules:Rule[], selectedRules:Rule[], onRuleSelect:(e
         <div className = "floatful floatful--selectors">
             {createRuleModalStatus && <CreateRule dispatch={props.dispatch} onClose={toggleCreateRuleModal}/>}
             <h2>Rules</h2>
+            {/*
+                Rules are organized as a nested list, each rule containing children 
+                (ex. "div h1", in this case the parent rule is "div") creates a 
+                sublist with all it's children (i.e. "h1").
+            */}
             <ul className = "floatful--selector-list">
                 {props.rules.map((rule:Rule) => (
                     <Selector key="rule.selector" rule={rule}/>
