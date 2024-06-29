@@ -1,7 +1,7 @@
 import { PROPERTY_TYPE } from "./PropertyTypes";
 
 class CSSProperty {
-	key: string;
+	key: string; //
 	initial: string;
 	values: (string | PROPERTY_TYPE)[];
 

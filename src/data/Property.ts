@@ -6,10 +6,10 @@ import CSS_PROPERTIES from "./CSSProperties";
  * of values, including color codes, numbers, predefined values, etc.
  */
 class Property {
-	name: string;
-	key: string;
-	values: (string | PROPERTY_TYPE)[];
-	value: string | PropertyValue;
+	key: string; // React keyword (e.g. "leftMargin")
+	name: string; // CSS Keyword (e.g. "margin-left")
+	values: (string | PROPERTY_TYPE)[]; // List of string values or PropertyTypes (numerical, hex, etc.) allowed
+	value: string | PropertyValue; // string or PropertyType selected for the property.
 
 	constructor(
 		name: string,
@@ -19,8 +19,8 @@ class Property {
 	) {
 		this.name = name;
 		this.key = key;
-		this.values = values !== undefined ? values : this._getValues(name);
-		this.value = value !== undefined ? value : this._getInitialValue(name);
+		this.values = values? values : this._getValues(name);
+		this.value = value? value : this._getInitialValue(name);
 	}
 
 	/**
@@ -33,16 +33,19 @@ class Property {
 	};
 
 	/**
-	 * Determined if a specific property type is allowed for the property instance
-	 * @param type PROPERTY_TYPE value to validate
-	 * @returns boolean whether the PROPERTY_TYPE is valid.
+	 * Determined if a specific property value or property type is valid for the specific property.
+	 * @param value String or PropertyValue to validate
+	 * @returns boolean whether the given string or PropertyValue is valid.
 	 */
-	isValidValueType = (type: PROPERTY_TYPE) => {
-		let typeFound = false;
-		this.values.forEach((val: string | PROPERTY_TYPE) => {
-			if (type === val) typeFound = true;
+	isValidValue = (value: string | PropertyValue) => {
+		this.values.forEach((val: String | PROPERTY_TYPE) => {
+			if(
+				value === val ||
+				(<PropertyValue>value).type === <PROPERTY_TYPE>val
+			) 
+				return true;
 		});
-		return typeFound;
+		return false;
 	};
 
 	/**
